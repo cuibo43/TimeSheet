@@ -17,11 +17,21 @@ export class LoginComponent implements OnInit {
   });
   isWrong = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private ws: WebService
-  ) {}
+  constructor(private fb: FormBuilder, private router: Router, private ws: WebService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+  SignIn(){
+    // this.ws.authenticate(this.loginForm.get('userName').value, this.loginForm.get('passWord').value)
+    // .subscribe(responseData => {
+    //   this.token=responseData['token'];
+    //   this.UserName=responseData['username'];
+    //   if(this.UserName !== null){
+    //     this.loginservice.setToken(this.UserName,this.token);
+    //     this.router.navigate(['home']);}
+    // },        error => this.isWrong=true
+    // );
+  }
+
+
 }
