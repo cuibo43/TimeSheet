@@ -63,7 +63,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "SmartTimeSheet-FrontEnd:build"
+            "browserTarget": "SmartTimeSheet-FrontEnd:build",
+            "proxyConfig":"proxy.config.json"
           },
           "configurations": {
             "production": {
