@@ -9,6 +9,7 @@ import { ProfileComponent } from "./profile/profile.component";
 
 import { WebService } from "./web.service";
 import { LoginComponent } from "./login/login.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { LoginComponent } from "./login/login.component";
     ProfileComponent,
     LoginComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [WebService],
   bootstrap: [AppComponent]
 })
