@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder,Validators} from '@angular/forms';
-import { Router } from '@angular/router';
-import { WebService } from './../web.service';
-
-
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { WebService } from "./../web.service";
 
 @Component({
   selector: "app-login",
@@ -11,11 +9,11 @@ import { WebService } from './../web.service';
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  token:string;
-  UserName:string;
+  token: string;
+  UserName: string;
   loginForm = this.fb.group({
-    userName: ['',Validators.required],
-    passWord: ['',Validators.required]
+    userName: ["", Validators.required],
+    passWord: ["", Validators.required]
   });
   isWrong = false;
 
