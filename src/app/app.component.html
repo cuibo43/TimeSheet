@@ -12,14 +12,12 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-      <a class="nav-link" href="summary">Summary</a>
-    </li>
-    <li class="nav-item">
-      <button (click)="gotoTimeSheet()">Time Sheet</button>
-    </li>
-    <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
-    <li class="nav-item"><a class="nav-link" href="login">Log In</a></li>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button class="btn btn-dark" (click)="gotoSummary()">Summary</button>
+      <button class="btn btn-dark" (click)="gotoTimeSheet()">Time Sheet</button>
+      <button class="btn btn-dark" (click)="gotoProfile()">Profile</button>
+      <button class="btn btn-dark" (click)="gotoLog()">Log In</button>
+    </div>
   </ul>
 </nav>
 <div class="jumbotron">

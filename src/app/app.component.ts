@@ -10,7 +10,15 @@ export class AppComponent {
   constructor(private router: Router) {}
   gotoTimeSheet() {
     const utc = new Date().toJSON().slice(0, 10);
-    console.log(utc);
     this.router.navigate(["/timeSheet"], { queryParams: { endingDay: utc } });
+  }
+  gotoSummary() {
+    this.router.navigate(["/summary"]);
+  }
+  gotoProfile() {
+    this.router.navigate(["/profile"]);
+  }
+  gotoLog() {
+    this.router.navigate(["/login"]);
   }
 }
