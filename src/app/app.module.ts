@@ -6,7 +6,14 @@ import { AppComponent } from "./app.component";
 import { SummaryComponent } from "./summary/summary.component";
 import { TimeSheetComponent } from "./time-sheet/time-sheet.component";
 import { ProfileComponent } from "./profile/profile.component";
+<<<<<<< HEAD
 import { HttpClientModule } from "@angular/common/http";
+=======
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+>>>>>>> James
 
 import { WebService } from "./web.service";
 import { LoginComponent } from "./login/login.component";
@@ -19,6 +26,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     TimeSheetComponent,
     ProfileComponent,
     LoginComponent
+<<<<<<< HEAD
   ],
   imports: [
     BrowserModule,
@@ -26,6 +34,10 @@ import { ReactiveFormsModule } from "@angular/forms";
     ReactiveFormsModule,
     HttpClientModule
   ],
+=======
+    ],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule,HttpClientModule,NgbModule],
+>>>>>>> James
   providers: [WebService],
   bootstrap: [AppComponent]
 })
