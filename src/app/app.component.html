@@ -16,13 +16,13 @@
       <a class="nav-link" href="summary">Summary</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="timeSheet">Time Sheet</a>
+      <button (click)="gotoTimeSheet()">Time Sheet</button>
     </li>
     <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
     <li class="nav-item"><a class="nav-link" href="login">Log In</a></li>
   </ul>
 </nav>
-<div class="jumbotron text-center">
+<div class="jumbotron">
   <div class="container">
     <router-outlet></router-outlet>
   </div>

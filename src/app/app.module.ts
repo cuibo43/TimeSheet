@@ -12,7 +12,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { WebService } from "./web.service";
 import { LoginComponent } from "./login/login.component";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
 
   providers: [WebService],

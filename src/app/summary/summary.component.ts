@@ -1,4 +1,3 @@
-import { Day } from "./../model/day";
 import { Component, OnInit } from "@angular/core";
 import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
@@ -15,6 +14,7 @@ export class SummaryComponent implements OnInit {
   summaries$: Observable<WeeklySummary[]>;
   summaries: WeeklySummary[];
   end = 5;
+  currentYear = -1;
 
   vacationLeft$: Observable<YearlyVacation>;
   vacationLeft: YearlyVacation;
@@ -31,20 +31,23 @@ export class SummaryComponent implements OnInit {
   }
 
   gCommentTag(summary: WeeklySummary) {
-    this.vacationLeft$ = this.api
-      .getVacationLeft(summary)
-      .pipe(map(data => data));
-    this.vacationLeft$.subscribe(data => (this.vacationLeft = data));
+    if (summary.year !== this.currentYear) {
+      this.vacationLeft$ = this.api
+        .getVacationLeft(summary)
+        .pipe(map(data => data));
+      this.vacationLeft$.subscribe(data => (this.vacationLeft = data));
+      this.currentYear = summary.year;
+    }
     return this.vacationLeft;
   }
 
   gComment(summary: WeeklySummary) {
     let holiday = 0;
     let vacation = 0;
-    let floatingdate = 0;
+    let floatingDate = 0;
     for (const day of summary.days) {
       if (day.floatingDay === true) {
-        floatingdate = floatingdate + 1;
+        floatingDate = floatingDate + 1;
       }
       if (day.holiday === true) {
         holiday = holiday + 1;
@@ -53,7 +56,7 @@ export class SummaryComponent implements OnInit {
         vacation = vacation + 1;
       }
     }
-    const nList: number[] = [floatingdate, vacation, holiday];
+    const nList: number[] = [floatingDate, vacation, holiday];
     return nList;
   }
 }

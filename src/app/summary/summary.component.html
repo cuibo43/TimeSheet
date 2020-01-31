@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table table-hover text-center">
   <thead class="thead-light">
     <tr>
       <th scope="col">Week Ending</th>
@@ -13,7 +13,16 @@
     <tr *ngFor="let summary of summaries | slice: 0:end">
       <td>{{ summary.endingDate }}</td>
       <td>{{ summary.totalHours }}</td>
-      <td>{{ summary.submissionStatus }}</td>
+      <td>
+        {{ summary.submissionStatus }}
+        <ng-container *ngIf="summary.submissionStatus === 'Incomplete'">
+          <i
+            class="fas fa-info-circle"
+            ngbPopover="Items due: Proof of Approved TimeSheet"
+            triggers="mouseenter:mouseleave"
+          ></i>
+        </ng-container>
+      </td>
       <td>{{ summary.approvalStatus }}</td>
       <td>
         <button type="button" class="btn btn-light">
@@ -26,17 +35,23 @@
       <td>
         <ng-container *ngIf="gComment(summary)[0] !== 0">
           {{ gComment(summary)[0] }} Floating day(s) required.
-          <!--          <button-->
-          <!--            type="button"-->
-          <!--            ngbPopover="{{ gCommentTag(summary).floatingDayLeft }}"-->
-          <!--            triggers="mouseenter:mouseleave"-->
-          <!--          >-->
-          <!--            <i class="fas fa-info-circle"></i>-->
-          <!--          </button>-->
+          <i
+            class="fas fa-info-circle"
+            ngbPopover="Total floating days left in {{ currentYear }} : {{
+              gCommentTag(summary).floatingDayLeft
+            }} days"
+            triggers="mouseenter:mouseleave"
+          ></i>
         </ng-container>
         <ng-container *ngIf="gComment(summary)[1] !== 0">
           {{ gComment(summary)[1] }} Vacation day(s) required.
-          <i class="fas fa-info-circle"></i>
+          <i
+            class="fas fa-info-circle"
+            ngbPopover="Total vacation left in {{ currentYear }} : {{
+              gCommentTag(summary).vacationLeft
+            }} days"
+            triggers="mouseenter:mouseleave"
+          ></i>
         </ng-container>
         <ng-container *ngIf="gComment(summary)[2] !== 0">
           {{ gComment(summary)[2] }} Holiday included.

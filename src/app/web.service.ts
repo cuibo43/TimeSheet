@@ -26,4 +26,16 @@ export class WebService {
   getWeeklySummaries() {
     return this.http.get<WeeklySummary[]>("api/summary/all");
   }
+  getWeeklySummariesByUseNameAndDate(date) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json; charset=UTF-8"
+      })
+    };
+    return this.http.post<WeeklySummary>(
+      "api/summary/getSummary",
+      JSON.stringify(date),
+      httpOptions
+    );
+  }
 }
