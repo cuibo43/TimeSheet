@@ -11,7 +11,7 @@
           ngbDatepicker
           #date="ngbDatepicker"
           (ngModelChange)="changeDate()"
-          placeholder="{{summarie.endingDate}}"
+          placeholder="{{summaries.endingDate}}"
         />
         <div class="input-group-append">
           <button (click)="date.toggle()" type="button">
@@ -73,11 +73,23 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let day of summarie.days">
-        <td></td>
+      <tr *ngFor="let day of summaries.days">
+        <td>{{ day.date | date: "EEEE" }}</td>
         <td>{{ day.date }}</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <td>{{ !day.startingTime ? "N/A" : day.startingTime }}</td>
+        <td>{{ !day.endingTime ? "N/A" : day.endingTime }}</td>
+        <td>{{ day.totalHours }}</td>
+        <td>
+          {{
+            day.floatingDay ? "[&nbsp;X&nbsp;]" : "[&nbsp;&nbsp;&nbsp;&nbsp;]"
+          }}
+        </td>
+        <td>
+          {{ day.holiday ? "[&nbsp;X&nbsp;]" : "[&nbsp;&nbsp;&nbsp;&nbsp;]" }}
+        </td>
+        <td>
+          {{ day.vacation ? "[&nbsp;X&nbsp;]" : "[&nbsp;&nbsp;&nbsp;&nbsp;]" }}
+        </td>
       </tr>
     </tbody>
   </table>

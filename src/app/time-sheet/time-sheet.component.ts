@@ -15,8 +15,8 @@ export class TimeSheetComponent implements OnInit {
   totalBillingHours: number;
   totalCompensatedHours: number;
   endDate:{year: number, month: number, day:number};
-  summarie$: Observable<WeeklySummary>;
-  summarie: WeeklySummary;
+  summaries$: Observable<WeeklySummary>;
+  summaries: WeeklySummary;
   constructor(private api: WebService, private router: Router, private route: ActivatedRoute) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
@@ -26,9 +26,9 @@ export class TimeSheetComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.endingDay = params['endingDay'];
   });
-    this.summarie$ = this.api.getWeeklySummariesByUseNameAndDate(this.endingDay).pipe(map(data => data));
-    this.summarie$.subscribe(data => {
-      this.summarie = data;
+    this.summaries$ = this.api.getWeeklySummariesByUseNameAndDate(this.endingDay).pipe(map(data => data));
+    this.summaries$.subscribe(data => {
+      this.summaries = data;
     });
   }
   changeDate(){
@@ -38,14 +38,14 @@ export class TimeSheetComponent implements OnInit {
   }
   calBilling(){
     let billing = 0;
-    for(const day of this.summarie.days){
+    for(const day of this.summaries.days){
       billing=billing+day.totalHours;
     }
     return billing;
   }
   calCompensated(){
     let compensated = 0;
-    for(const day of this.summarie.days){
+    for(const day of this.summaries.days){
       if(day.floatingDay){
         compensated=compensated+8;
       }
