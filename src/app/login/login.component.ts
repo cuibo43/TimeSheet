@@ -17,11 +17,14 @@ export class LoginComponent implements OnInit {
   });
   isWrong = false;
 
-  constructor(private fb: FormBuilder, private router: Router, private ws: WebService) { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private ws: WebService
+  ) {}
 
-  ngOnInit() {
-  }
-  SignIn(){
+  ngOnInit() {}
+  SignIn() {
     // this.ws.authenticate(this.loginForm.get('userName').value, this.loginForm.get('passWord').value)
     // .subscribe(responseData => {
     //   this.token=responseData['token'];
@@ -32,6 +35,4 @@ export class LoginComponent implements OnInit {
     // },        error => this.isWrong=true
     // );
   }
-
-
 }
