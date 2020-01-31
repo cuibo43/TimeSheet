@@ -1,8 +1,8 @@
-<div class="row">
-  <form class="form-inline" id="week">
+<form id="week">
+  <div class="form-inline row justify-content-between">
     <div class="form-group">
       <div class="input-group">
-        <label for="week">Week Ending</label>
+        <label for="week" class="col-form-label mr-1">Week Ending</label>
         <input
           type="text"
           class="form-control"
@@ -22,32 +22,41 @@
     </div>
 
     <div class="form-group">
-      <label for="weeklyBillingHours">Total Billing Hours</label>
+      <label for="weeklyBillingHours" class="col-form-label mr-1">
+        Total Billing Hours
+      </label>
       <input
         class="form-control"
         type="text"
         name="totalBillingHours"
         id="weeklyBillingHours"
+        disabled
       />
     </div>
 
     <div class="form-group">
-      <label for="weeklyCompensatedHours">Total Compensated Hours</label>
+      <label for="weeklyCompensatedHours" class="col-form-label mr-1">
+        Total Compensated Hours
+      </label>
       <input
         class="form-control"
         type="text"
         name="totalCompensatedHours"
         id="weeklyCompensatedHours"
+        disabled
       />
     </div>
-  </form>
-</div>
-
+  </div>
+</form>
 <div class="row mt-3 mb-3">
-  <button class="btn btn-primary float-right">Set Default</button>
+  <div class="col-12 p-0">
+    <button type="button" class="btn btn-outline-primary float-right">
+      Set Default
+    </button>
+  </div>
 </div>
 
-<div class="row">
+<div class="row text-center">
   <table class="table table-hover">
     <thead class="thead-light">
       <tr>
@@ -70,4 +79,30 @@
       </tr>
     </tbody>
   </table>
+</div>
+<div class="row">
+  <div class="col-12 p-0">
+    <div class="dropdown d-inline-block mr-3">
+      <button
+        class="btn btn-outline-primary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Approval Status
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item">Approved Timesheet</a>
+        <a class="dropdown-item">Unapproved Timesheet</a>
+      </div>
+    </div>
+    <div class="custom-file d-inline-block col-2">
+      <input type="file" class="custom-file-input" id="file" />
+      <label class="custom-file-label" for="file">Choose file</label>
+    </div>
+
+    <button class="btn btn-primary float-right" type="button">Save</button>
+  </div>
 </div>
