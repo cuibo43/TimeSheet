@@ -6,6 +6,10 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./time-sheet.component.css"]
 })
 export class TimeSheetComponent implements OnInit {
+  endingDay;
+  totalBillingHours: number;
+  totalCompensatedHours: number;
+
   constructor() {}
 
   ngOnInit() {}
