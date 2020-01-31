@@ -16,6 +16,7 @@ export class SummaryComponent implements OnInit {
   summaries$: Observable<WeeklySummary[]>;
   summaries: WeeklySummary[];
   end = 5;
+  currentYear: number =-1;
 
   vacationLeft$: Observable<YearlyVacation>;
   vacationLeft: YearlyVacation;
@@ -32,11 +33,12 @@ export class SummaryComponent implements OnInit {
   }
 
   gCommentTag(summary: WeeklySummary){
-    this.vacationLeft$ = this.api.getVacationLeft(summary).pipe(map(data => data));
-    this.vacationLeft$.subscribe(data => (this.vacationLeft = data));
+    if(summary.year!==this.currentYear){
+      this.vacationLeft$ = this.api.getVacationLeft(summary).pipe(map(data => data));
+      this.vacationLeft$.subscribe(data => (this.vacationLeft = data));
+      this.currentYear=summary.year;
+    }
     return this.vacationLeft;
-
-
   }
 
   gComment(summary: WeeklySummary){
