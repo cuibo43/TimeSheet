@@ -7,6 +7,8 @@ import { SummaryComponent } from "./summary/summary.component";
 import { TimeSheetComponent } from "./time-sheet/time-sheet.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 import { WebService } from "./web.service";
@@ -22,7 +24,7 @@ import {  ReactiveFormsModule } from "@angular/forms";
     ProfileComponent,
     LoginComponent
     ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule,HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule,HttpClientModule,NgbModule],
   providers: [WebService],
   bootstrap: [AppComponent]
 })

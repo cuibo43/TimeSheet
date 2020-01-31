@@ -23,7 +23,22 @@
           <ng-template #edit>Edit</ng-template>
         </button>
       </td>
-      <td>{{ summary.comment }}</td>
+    <td>
+      <ng-container *ngIf="gComment(summary)[0]!==0">
+     {{gComment(summary)[0]}} Floating day(s) required.
+     <button type="button" ngbPopover="{{gCommentTag(summary).floatingDayLeft}}" triggers="mouseenter:mouseleave" >
+      <i class="fas fa-info-circle"></i>
+    </button>
+
+      </ng-container>
+      <ng-container *ngIf="gComment(summary)[1]!==0">
+        {{gComment(summary)[1]}} Vacation day(s) required.
+        <i class="fas fa-info-circle"></i>
+      </ng-container>
+      <ng-container *ngIf="gComment(summary)[2]!==0">
+          {{gComment(summary)[2]}} Holiday included.
+      </ng-container>
+    </td>
     </tr>
   </tbody>
 </table>
