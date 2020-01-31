@@ -76,8 +76,22 @@
       <tr *ngFor="let day of summaries.days">
         <td>{{ day.date | date: "EEEE" }}</td>
         <td>{{ day.date }}</td>
-        <td>{{ !day.startingTime ? "N/A" : day.startingTime }}</td>
-        <td>{{ !day.endingTime ? "N/A" : day.endingTime }}</td>
+        <td>
+          <select class="form-control form-control-sm" (change)="day.startingTime=timeTransferwithNull($event.target.value)">
+            <option [value]="'N/A'" [selected]="!day.startingTime">N/A</option>
+            <ng-container *ngFor="let hour of timeHardCode">
+            <option  [value]="hour" [selected]="timeFit(day.startingTime,hour)" >{{hour}}</option>
+          </ng-container>
+          </select>
+        </td>
+        <td>
+          <select class="form-control form-control-sm" (change)="day.endingTime=timeTransferwithNull($event.target.value)" >
+          <option [value]="'N/A'" [selected]="!day.endingTime">N/A</option>
+          <ng-container *ngFor="let hour of timeHardCode">
+          <option  [value]="hour" [selected]="timeFit(day.endingTime,hour)" >{{hour}}</option>
+        </ng-container>
+        </select>
+      </td>
         <td>{{ day.totalHours }}</td>
         <td>
           {{
@@ -117,6 +131,6 @@
       <label class="custom-file-label" for="file">Choose file</label>
     </div>
 
-    <button class="btn btn-primary float-right" type="button">Save</button>
+    <button class="btn btn-primary float-right" type="button" (click)="save()">Save</button>
   </div>
 </div>
