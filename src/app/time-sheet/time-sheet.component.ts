@@ -17,6 +17,7 @@ export class TimeSheetComponent implements OnInit {
   endDate: { year: number; month: number; day: number };
   summaries$: Observable<WeeklySummary>;
   summaries: WeeklySummary;
+  hourOptions = [...Array(13).keys()];
 
   constructor(
     private api: WebService,
