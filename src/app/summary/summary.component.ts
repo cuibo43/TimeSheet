@@ -31,20 +31,12 @@ export class SummaryComponent implements OnInit {
     this.end += 5;
   }
 
-<<<<<<< HEAD
   gCommentTag(summary: WeeklySummary){
     if(summary.year!==this.currentYear){
       this.vacationLeft$ = this.api.getVacationLeft(summary).pipe(map(data => data));
       this.vacationLeft$.subscribe(data => (this.vacationLeft = data));
       this.currentYear=summary.year;
     }
-=======
-  gCommentTag(summary: WeeklySummary) {
-    this.vacationLeft$ = this.api
-      .getVacationLeft(summary)
-      .pipe(map(data => data));
-    this.vacationLeft$.subscribe(data => (this.vacationLeft = data));
->>>>>>> d7174f27d31a532135111c62c655df07fcf55909
     return this.vacationLeft;
   }
 
