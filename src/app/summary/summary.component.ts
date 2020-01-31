@@ -12,6 +12,7 @@ import { map } from "rxjs/operators";
 export class SummaryComponent implements OnInit {
   summaries$: Observable<WeeklySummary[]>;
   summaries: WeeklySummary[];
+  end = 5;
 
   constructor(private api: WebService) {}
 
@@ -20,11 +21,7 @@ export class SummaryComponent implements OnInit {
     this.summaries$.subscribe(data => (this.summaries = data));
   }
 
-  onEditPressed() {
-    console.log("Edit pressed");
-  }
-
-  onViewPressed() {
-    console.log("View pressed");
+  onShowMorePressed() {
+    this.end += 5;
   }
 }
