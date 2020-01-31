@@ -12,8 +12,10 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { WebService } from "./web.service";
 import { LoginComponent } from "./login/login.component";
-import { ReactiveFormsModule } from "@angular/forms";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    BrowserAnimationsModule
+    FormsModule
+
   ],
 
   providers: [WebService],
