@@ -3,8 +3,12 @@ export class User {
   phoneNumber: string;
   email: string;
   address: string;
-  contact1: string;
-  contact2: string;
+  contact1FirstName: string;
+  contact1LastName: string;
+  contact1PhoneNumber: string;
+  contact2FirstName: string;
+  contact2LastName: string;
+  contact2PhoneNumber: string;
   avatar: string;
   role: string;
   attachment: string;
