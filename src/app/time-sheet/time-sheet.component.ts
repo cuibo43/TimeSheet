@@ -12,13 +12,23 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class TimeSheetComponent implements OnInit {
   endingDay: string;
-  totalBillingHours: number;
-  totalCompensatedHours: number;
   endDate: { year: number; month: number; day: number };
   summaries$: Observable<WeeklySummary>;
   summaries: WeeklySummary;
-  timeHardCode: string[]=["08:00 AM","09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM",
-  "03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM"]
+  timeHardCode: string[] = [
+    "08:00 AM",
+    "09:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "12:00 PM",
+    "01:00 PM",
+    "02:00 PM",
+    "03:00 PM",
+    "04:00 PM",
+    "05:00 PM",
+    "06:00 PM",
+    "07:00 PM"
+  ];
   hourOptions = [...Array(13).keys()];
 
   constructor(
@@ -40,41 +50,47 @@ export class TimeSheetComponent implements OnInit {
       this.summaries = data;
     });
   }
-  changeDate(){
-    this.endingDay=(this.endDate.year)+'-'+this.pad(this.endDate.month)+'-'+this.pad(this.endDate.day);
-    this.router.navigate(['/timeSheet'], { queryParams: {endingDay: this.endingDay}});
+  changeDate() {
+    this.endingDay =
+      this.endDate.year +
+      "-" +
+      this.pad(this.endDate.month) +
+      "-" +
+      this.pad(this.endDate.day);
+    this.router.navigate(["/timeSheet"], {
+      queryParams: { endingDay: this.endingDay }
+    });
   }
-  timeFit(startingTime,hour){
-    if(this.timeTransfer(hour)===startingTime){
+  timeFit(startingTime, hour) {
+    if (this.timeTransfer(hour) === startingTime) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
-  timeTransferwithNull(time: string){
-    if(time==="N/A"){
+  timeTransferWithNull(time: string) {
+    if (time === "N/A") {
       return null;
-    }
-    else{
+    } else {
       return this.timeTransfer(time);
     }
   }
 
-
-  timeTransfer(time: string){
-    const postfix=time.slice(-2);
-    if(postfix==="AM"||(postfix==="PM"&&time.substring(0,2)==="12")){
-      return (time.substring(0,2)+":00:00");
-    }
-    else{
-      return (+time.substring(0,2)+12)+":00:00"
+  timeTransfer(time: string) {
+    const postfix = time.slice(-2);
+    if (
+      postfix === "AM" ||
+      (postfix === "PM" && time.substring(0, 2) === "12")
+    ) {
+      return time.substring(0, 2) + ":00:00";
+    } else {
+      return +time.substring(0, 2) + 12 + ":00:00";
     }
   }
-  save(){
-      console.log(this.summaries)
+  save() {
+    console.log(this.summaries);
   }
-  calBilling(){
+  calBilling() {
     let billing = 0;
     for (const day of this.summaries.days) {
       billing = billing + day.totalHours;
