@@ -7,9 +7,11 @@
           type="text"
           class="form-control"
           name="datepicker"
-          [(ngModel)]="endingDay"
+          [(ngModel)]="endDate"
           ngbDatepicker
           #date="ngbDatepicker"
+          (ngModelChange)="changeDate()"
+          placeholder="{{summarie.endingDate}}"
         />
         <div class="input-group-append">
           <button
@@ -29,6 +31,7 @@
         type="text"
         name="totalBillingHours"
         id="weeklyBillingHours"
+        [value]="calBilling()"
         disabled
       />
     </div>
@@ -42,6 +45,7 @@
         type="text"
         name="totalCompensatedHours"
         id="weeklyCompensatedHours"
+        [value]="calCompensated()"
         disabled
       />
     </div>
