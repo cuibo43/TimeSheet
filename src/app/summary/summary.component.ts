@@ -1,11 +1,10 @@
-import { Day } from './../model/day';
+import { Day } from "./../model/day";
 import { Component, OnInit } from "@angular/core";
 import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { YearlyVacation } from "./YearlyVacation";
-
 
 @Component({
   selector: "app-summary",
@@ -32,32 +31,39 @@ export class SummaryComponent implements OnInit {
     this.end += 5;
   }
 
+<<<<<<< HEAD
   gCommentTag(summary: WeeklySummary){
     if(summary.year!==this.currentYear){
       this.vacationLeft$ = this.api.getVacationLeft(summary).pipe(map(data => data));
       this.vacationLeft$.subscribe(data => (this.vacationLeft = data));
       this.currentYear=summary.year;
     }
+=======
+  gCommentTag(summary: WeeklySummary) {
+    this.vacationLeft$ = this.api
+      .getVacationLeft(summary)
+      .pipe(map(data => data));
+    this.vacationLeft$.subscribe(data => (this.vacationLeft = data));
+>>>>>>> d7174f27d31a532135111c62c655df07fcf55909
     return this.vacationLeft;
   }
 
-  gComment(summary: WeeklySummary){
+  gComment(summary: WeeklySummary) {
     let holiday = 0;
     let vacation = 0;
     let floatingdate = 0;
-    for(const day of summary.days){
-      if(day.floatingDay === true){
+    for (const day of summary.days) {
+      if (day.floatingDay === true) {
         floatingdate = floatingdate + 1;
       }
-      if(day.holiday===true){
-        holiday=holiday+1;
+      if (day.holiday === true) {
+        holiday = holiday + 1;
       }
-      if(day.vacation===true){
-        vacation=vacation+1;
+      if (day.vacation === true) {
+        vacation = vacation + 1;
       }
     }
-    const nList: number [] = [ floatingdate,vacation,holiday ]
+    const nList: number[] = [floatingdate, vacation, holiday];
     return nList;
-}
-
+  }
 }
