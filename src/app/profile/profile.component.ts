@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { User } from '../model/user';
-import { FormBuilder, Validators } from '@angular/forms';
-
+import { User } from "../model/user";
+import { FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-profile",
@@ -11,36 +10,24 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   user: User;
   form;
-  constructor(
-    formBuilder: FormBuilder
-    )
-    {
-      this.form = formBuilder.group({
-        phoneNumber: [
-          "",
-         [Validators.pattern("^[0-9]\\d{9}$")]
-        ],
-        email: [
-          "",
-          [
-            Validators.pattern(
-              "^\\w+[\\w-\\.]*\\@\\w+((-\\w+)|(\\w*))\\.[a-z]{2,3}$"
-            )
-          ]
-        ],
-        address: [],
-        fullName1: [],
-        phoneNumber1: [
-          "",
-         [Validators.pattern("^[0-9]\\d{9}$")]
-        ],
-        fullName2: [],
-        phoneNumber2: [
-          "",
-         [Validators.pattern("^[0-9]\\d{9}$")]
-        ],
-      });
-    }
+  constructor(formBuilder: FormBuilder) {
+    this.form = formBuilder.group({
+      phoneNumber: ["", [Validators.pattern("^[0-9]\\d{9}$")]],
+      email: [
+        "",
+        [
+          Validators.pattern(
+            "^\\w+[\\w-\\.]*\\@\\w+((-\\w+)|(\\w*))\\.[a-z]{2,3}$"
+          )
+        ]
+      ],
+      address: [],
+      fullName1: [],
+      phoneNumber1: ["", [Validators.pattern("^[0-9]\\d{9}$")]],
+      fullName2: [],
+      phoneNumber2: ["", [Validators.pattern("^[0-9]\\d{9}$")]]
+    });
+  }
 
   ngOnInit() {}
 
@@ -53,7 +40,6 @@ export class ProfileComponent implements OnInit {
     usr.contact1PhoneNumber = this.form.get("phoneNumber1").value;
     usr.contact2FirstName = this.form.get("fullName2").value;
     usr.contact2PhoneNumber = this.form.get("phoneNumber2").value;
-
 
     // this.potentialCandidateService
     //   .getPositionIdByName(this.form.get("position").value)

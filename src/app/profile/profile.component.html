@@ -1,33 +1,8 @@
-<!-- <dl class="row">
-  <dt class="col-sm-3">User Name</dt>
-  <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
-
-  <dt class="col-sm-3">User Phone Number</dt>
-  <dd class="col-sm-9">
-    Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.
-  </dd>
-
-  <dt class="col-sm-3">User Email Address</dt>
-  <dd class="col-sm-9">Etiam porta sem malesuada magna mollis euismod.</dd>
-
-  <dt class="col-sm-3">User Home Address</dt>
-  <dd class="col-sm-9">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</dd>
-
-  <dt class="col-sm-3">Emergency Contact</dt>
-  <dd class="col-sm-9">
-    <dl class="row">
-      <dt class="col-sm-4">Emergency Contact 1</dt>
-      <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
-      <dt class="col-sm-4">Emergency Contact 2</dt>
-      <dd class="col-sm-8">Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc.</dd>
-    </dl>
-  </dd>
-</dl> -->
 <table class="table table-hover table-sm">
   <thead>
     <tr class="table-dark">
-      <th  style="text-align: left;">Field</th>
-      <th  style="text-align: left;">Content</th>
+      <th style="text-align: left;">Field</th>
+      <th style="text-align: left;">Content</th>
     </tr>
   </thead>
   <tbody>
@@ -38,7 +13,6 @@
     <tr>
       <th scope="row" style="text-align: left;">User Phone Number</th>
       <td style="text-align: left;">(312)838-0982</td>
-
     </tr>
     <tr>
       <th scope="row" style="text-align: left;">User Email Address</th>
@@ -46,14 +20,18 @@
     </tr>
     <tr>
       <th scope="row" style="text-align: left;">User Home Address</th>
-      <td style="text-align: left;">75 Tennyson Rd, East Windsor, New Jersey, 08520</td>
+      <td style="text-align: left;">
+        75 Tennyson Rd, East Windsor, New Jersey, 08520
+      </td>
     </tr>
     <tr>
       <th scope="row" style="text-align: left;">Emergency Contact 1</th>
       <td style="text-align: left;">James Cui</td>
     </tr>
     <tr>
-      <th scope="row" style="text-align: left;">Emergency Contact 1 Phone Number</th>
+      <th scope="row" style="text-align: left;">
+        Emergency Contact 1 Phone Number
+      </th>
       <td style="text-align: left;">(123)456-7890</td>
     </tr>
     <tr>
@@ -61,13 +39,22 @@
       <td style="text-align: left;">Lambert Lin</td>
     </tr>
     <tr>
-      <th scope="row" style="text-align: left;">Emergency Contact 2 Phone Number</th>
+      <th scope="row" style="text-align: left;">
+        Emergency Contact 2 Phone Number
+      </th>
       <td style="text-align: left;">(123)456-7890</td>
     </tr>
   </tbody>
 </table>
 
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newUserModal"> Edit </button>
+<button
+  type="button"
+  class="btn btn-primary btn-lg"
+  data-toggle="modal"
+  data-target="#newUserModal"
+>
+  Edit
+</button>
 <div
   class="modal fade"
   id="newUserModal"
@@ -98,7 +85,10 @@
             />
             <div
               class="alert alert-danger"
-              *ngIf="form.get('phoneNumber').touched && form.get('phoneNumber').invalid"
+              *ngIf="
+                form.get('phoneNumber').touched &&
+                form.get('phoneNumber').invalid
+              "
             >
               <div *ngIf="form.get('phoneNumber').errors.pattern">
                 Please input a valid phone number!
@@ -125,7 +115,12 @@
           </div>
           <div class="form-group">
             <label for="address"></label>
-            <textarea class="form-control" id="address" rows="3" placeholder="(Home Address) &#13;&#10;75 Tennyson Rd, East Windsor, NJ, 08520"></textarea>
+            <textarea
+              class="form-control"
+              id="address"
+              rows="3"
+              placeholder="(Home Address) &#13;&#10;75 Tennyson Rd, East Windsor, NJ, 08520"
+            ></textarea>
           </div>
           <div class="form-group">
             <label for="fullName1">Emergency Contact 1</label>
@@ -149,7 +144,8 @@
             <div
               class="alert alert-danger"
               *ngIf="
-                form.get('phoneNumber1').touched && form.get('phoneNumber1').invalid
+                form.get('phoneNumber1').touched &&
+                form.get('phoneNumber1').invalid
               "
             >
               <div *ngIf="form.get('phoneNumber1').errors.pattern">
@@ -179,7 +175,8 @@
             <div
               class="alert alert-danger"
               *ngIf="
-                form.get('phoneNumber2').touched && form.get('phoneNumber2').invalid
+                form.get('phoneNumber2').touched &&
+                form.get('phoneNumber2').invalid
               "
             >
               <div *ngIf="form.get('phoneNumber2').errors.pattern">
@@ -200,4 +197,3 @@
     </div>
   </div>
 </div>
-
