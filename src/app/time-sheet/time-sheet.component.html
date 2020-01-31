@@ -1,0 +1,73 @@
+<div class="row">
+  <form class="form-inline" id="week">
+    <div class="form-group">
+      <div class="input-group">
+        <label for="week">Week Ending</label>
+        <input
+          type="text"
+          class="form-control"
+          name="datepicker"
+          [(ngModel)]="endingDay"
+          ngbDatepicker
+          #date="ngbDatepicker"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-primary"
+            (click)="date.toggle()"
+            type="button"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="weeklyBillingHours">Total Billing Hours</label>
+      <input
+        class="form-control"
+        type="text"
+        name="totalBillingHours"
+        id="weeklyBillingHours"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="weeklyCompensatedHours">Total Compensated Hours</label>
+      <input
+        class="form-control"
+        type="text"
+        name="totalCompensatedHours"
+        id="weeklyCompensatedHours"
+      />
+    </div>
+  </form>
+</div>
+
+<div class="row mt-3 mb-3">
+  <button class="btn btn-primary float-right">Set Default</button>
+</div>
+
+<div class="row">
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Day</th>
+        <th scope="col">Date</th>
+        <th scope="col">Starting Time</th>
+        <th scope="col">Ending Time</th>
+        <th scope="col">Total Hours</th>
+        <th scope="col">Floating Day</th>
+        <th scope="col">Holiday</th>
+        <th scope="col">Vacation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
