@@ -14,6 +14,7 @@ import { WebService } from "./web.service";
 import { LoginComponent } from "./login/login.component";
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     SummaryComponent,
     TimeSheetComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

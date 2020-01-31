@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { User } from "../model/user";
 import { FormBuilder, Validators } from "@angular/forms";
+import { WebService } from "../web.service";
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: "app-profile",
@@ -8,9 +11,11 @@ import { FormBuilder, Validators } from "@angular/forms";
   styleUrls: ["./profile.component.css"]
 })
 export class ProfileComponent implements OnInit {
+  profile$: Observable<User>;
+  profile: User;
   user: User;
   form;
-  constructor(formBuilder: FormBuilder) {
+  constructor(private api: WebService, formBuilder: FormBuilder) {
     this.form = formBuilder.group({
       phoneNumber: ["", [Validators.pattern("^[0-9]\\d{9}$")]],
       email: [
@@ -29,7 +34,10 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.profile$ = this.api.getUserInfo().pipe(map(data => data));
+    this.profile$.subscribe(data => (this.profile = data));
+  }
 
   onSubmit() {
     const usr = new User();

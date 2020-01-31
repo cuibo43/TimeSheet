@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { WeeklySummary } from "./model/weekly-summary";
 import { YearlyVacation } from "./summary/YearlyVacation";
 import { HttpHeaders } from "@angular/common/http";
+import { User } from "./model/user";
 
 @Injectable({
   providedIn: "root"
@@ -26,6 +27,7 @@ export class WebService {
   getWeeklySummaries() {
     return this.http.get<WeeklySummary[]>("api/summary/all");
   }
+
   getWeeklySummariesByUseNameAndDate(date) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -37,5 +39,9 @@ export class WebService {
       JSON.stringify(date),
       httpOptions
     );
+  }
+
+  getUserInfo() {
+    return this.http.get<User>("api/profile/detail");
   }
 }
