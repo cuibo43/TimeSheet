@@ -1,1 +1,199 @@
-<p>profile works!</p>
+<table class="table table-hover table-sm">
+  <thead>
+    <tr class="table-dark">
+      <th style="text-align: left;">Field</th>
+      <th style="text-align: left;">Content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row" style="text-align: left;">User Name</th>
+      <td style="text-align: left;">David</td>
+    </tr>
+    <tr>
+      <th scope="row" style="text-align: left;">User Phone Number</th>
+      <td style="text-align: left;">(312)838-0982</td>
+    </tr>
+    <tr>
+      <th scope="row" style="text-align: left;">User Email Address</th>
+      <td style="text-align: left;">guoshangpeng1995@gmail.com</td>
+    </tr>
+    <tr>
+      <th scope="row" style="text-align: left;">User Home Address</th>
+      <td style="text-align: left;">
+        75 Tennyson Rd, East Windsor, New Jersey, 08520
+      </td>
+    </tr>
+    <tr>
+      <th scope="row" style="text-align: left;">Emergency Contact 1</th>
+      <td style="text-align: left;">James Cui</td>
+    </tr>
+    <tr>
+      <th scope="row" style="text-align: left;">
+        Emergency Contact 1 Phone Number
+      </th>
+      <td style="text-align: left;">(123)456-7890</td>
+    </tr>
+    <tr>
+      <th scope="row" style="text-align: left;">Emergency Contact 2</th>
+      <td style="text-align: left;">Lambert Lin</td>
+    </tr>
+    <tr>
+      <th scope="row" style="text-align: left;">
+        Emergency Contact 2 Phone Number
+      </th>
+      <td style="text-align: left;">(123)456-7890</td>
+    </tr>
+  </tbody>
+</table>
+
+<button
+  type="button"
+  class="btn btn-primary btn-lg"
+  data-toggle="modal"
+  data-target="#newUserModal"
+>
+  Edit
+</button>
+<div
+  class="modal fade"
+  id="newUserModal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle">
+          Contact
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form">
+          <div class="form-group">
+            <label for="phoneNumber"></label>
+            <input
+              type="phoneNumber"
+              class="form-control"
+              id="phoneNumber"
+              placeholder="(312)838-0982"
+              formControlName="phoneNumber"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                form.get('phoneNumber').touched &&
+                form.get('phoneNumber').invalid
+              "
+            >
+              <div *ngIf="form.get('phoneNumber').errors.pattern">
+                Please input a valid phone number!
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email"></label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="EmailID@gmail.com"
+              formControlName="email"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="form.get('email').touched && form.get('email').invalid"
+            >
+              <div *ngIf="form.get('email').errors.pattern">
+                Please input a valid email!
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address"></label>
+            <textarea
+              class="form-control"
+              id="address"
+              rows="3"
+              placeholder="(Home Address) &#13;&#10;75 Tennyson Rd, East Windsor, NJ, 08520"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="fullName1">Emergency Contact 1</label>
+            <input
+              type="fullName1"
+              class="form-control"
+              id="fullName1"
+              placeholder="First Name, Last Name"
+              formControlName="fullName1"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber1"></label>
+            <input
+              type="phoneNumber1"
+              class="form-control"
+              id="phoneNumber1"
+              placeholder="(312)838-0982"
+              formControlName="phoneNumber1"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                form.get('phoneNumber1').touched &&
+                form.get('phoneNumber1').invalid
+              "
+            >
+              <div *ngIf="form.get('phoneNumber1').errors.pattern">
+                Please input a valid phone number!
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fullName2">Emergency Contact 2</label>
+            <input
+              type="fullName2"
+              class="form-control"
+              id="fullName2"
+              placeholder="First Name, Last Name"
+              formControlName="fullName2"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber2"></label>
+            <input
+              type="phoneNumber2"
+              class="form-control"
+              id="phoneNumber2"
+              placeholder="(312)838-0982"
+              formControlName="phoneNumber2"
+            />
+            <div
+              class="alert alert-danger"
+              *ngIf="
+                form.get('phoneNumber2').touched &&
+                form.get('phoneNumber2').invalid
+              "
+            >
+              <div *ngIf="form.get('phoneNumber2').errors.pattern">
+                Please input a valid phone number!
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

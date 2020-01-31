@@ -15,10 +15,13 @@
       <td>{{ summary.totalHours }}</td>
       <td>
         {{ summary.submissionStatus }}
-        <ng-container *ngIf="summary.submissionStatus==='Incomplete'">
-          <i class="fas fa-info-circle" ngbPopover="Items due: Proof of Approved TimeSheet"
-          triggers="mouseenter:mouseleave"></i>
-      </ng-container>
+        <ng-container *ngIf="summary.submissionStatus === 'Incomplete'">
+          <i
+            class="fas fa-info-circle"
+            ngbPopover="Items due: Proof of Approved TimeSheet"
+            triggers="mouseenter:mouseleave"
+          ></i>
+        </ng-container>
       </td>
       <td>{{ summary.approvalStatus }}</td>
       <td>
@@ -29,21 +32,31 @@
           <ng-template #edit>Edit</ng-template>
         </button>
       </td>
-    <td>
-      <ng-container *ngIf="gComment(summary)[0]!==0">
-     {{gComment(summary)[0]}} Floating day(s) required.
-      <i class="fas fa-info-circle" ngbPopover="Total floating days left in {{currentYear}} : {{gCommentTag(summary).floatingDayLeft}} days"
-      triggers="mouseenter:mouseleave" ></i>
-      </ng-container>
-      <ng-container *ngIf="gComment(summary)[1]!==0">
-        {{gComment(summary)[1]}} Vacation day(s) required.
-        <i class="fas fa-info-circle" ngbPopover="Total vacation left in {{currentYear}} : {{gCommentTag(summary).vacationLeft}} days"
-        triggers="mouseenter:mouseleave"></i>
-    </ng-container>
-      <ng-container *ngIf="gComment(summary)[2]!==0">
-          {{gComment(summary)[2]}} Holiday included.
-      </ng-container>
-    </td>
+      <td>
+        <ng-container *ngIf="gComment(summary)[0] !== 0">
+          {{ gComment(summary)[0] }} Floating day(s) required.
+          <i
+            class="fas fa-info-circle"
+            ngbPopover="Total floating days left in {{ currentYear }} : {{
+              gCommentTag(summary).floatingDayLeft
+            }} days"
+            triggers="mouseenter:mouseleave"
+          ></i>
+        </ng-container>
+        <ng-container *ngIf="gComment(summary)[1] !== 0">
+          {{ gComment(summary)[1] }} Vacation day(s) required.
+          <i
+            class="fas fa-info-circle"
+            ngbPopover="Total vacation left in {{ currentYear }} : {{
+              gCommentTag(summary).vacationLeft
+            }} days"
+            triggers="mouseenter:mouseleave"
+          ></i>
+        </ng-container>
+        <ng-container *ngIf="gComment(summary)[2] !== 0">
+          {{ gComment(summary)[2] }} Holiday included.
+        </ng-container>
+      </td>
     </tr>
   </tbody>
 </table>
