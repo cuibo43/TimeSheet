@@ -1,6 +1,7 @@
 import { Day } from "./day";
 
 export class WeeklySummary {
+  id: string;
   username: string;
   endingDate: string;
   totalHours: number;

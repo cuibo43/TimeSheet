@@ -30,11 +30,13 @@ export class SummaryComponent implements OnInit {
     this.end += 5;
   }
 
-  gCommentTag(summary: WeeklySummary){
-    if(summary.year!==this.currentYear){
-      this.vacationLeft$ = this.api.getVacationLeft(summary).pipe(map(data => data));
+  gCommentTag(summary: WeeklySummary) {
+    if (summary.year !== this.currentYear) {
+      this.vacationLeft$ = this.api
+        .getVacationLeft(summary)
+        .pipe(map(data => data));
       this.vacationLeft$.subscribe(data => (this.vacationLeft = data));
-      this.currentYear=summary.year;
+      this.currentYear = summary.year;
     }
     return this.vacationLeft;
   }
