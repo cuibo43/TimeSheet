@@ -26,6 +26,7 @@ export class WebService {
   getWeeklySummaries() {
     return this.http.get<WeeklySummary[]>("api/summary/all");
   }
+
   getWeeklySummariesByUseNameAndDate(date) {
     const httpOptions = {
       headers: new HttpHeaders({

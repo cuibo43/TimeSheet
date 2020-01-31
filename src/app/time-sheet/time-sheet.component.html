@@ -11,7 +11,7 @@
           ngbDatepicker
           #date="ngbDatepicker"
           (ngModelChange)="changeDate()"
-          placeholder="{{summaries.endingDate}}"
+          placeholder="{{ summaries.endingDate }}"
         />
         <div class="input-group-append">
           <button (click)="date.toggle()" type="button">
@@ -92,17 +92,50 @@
         </ng-container>
         </select>
       </td>
-        <td>{{ day.totalHours }}</td>
         <td>
-          {{
-            day.floatingDay ? "[&nbsp;X&nbsp;]" : "[&nbsp;&nbsp;&nbsp;&nbsp;]"
-          }}
+          <select
+            class="form-control"
+            id="totalHours"
+            [(ngModel)]="day.totalHours"
+            [value]="day.totalHours"
+          >
+            <option *ngFor="let clock of hourOptions" [value]="clock">
+              {{ clock }}
+            </option>
+          </select>
         </td>
         <td>
-          {{ day.holiday ? "[&nbsp;X&nbsp;]" : "[&nbsp;&nbsp;&nbsp;&nbsp;]" }}
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              [(ngModel)]="day.floatingDay"
+              [checked]="day.floatingDay"
+              [value]="day.floatingDay"
+            />
+          </div>
         </td>
         <td>
-          {{ day.vacation ? "[&nbsp;X&nbsp;]" : "[&nbsp;&nbsp;&nbsp;&nbsp;]" }}
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              [(ngModel)]="day.holiday"
+              [checked]="day.holiday"
+              [value]="day.holiday"
+            />
+          </div>
+        </td>
+        <td>
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              [(ngModel)]="day.vacation"
+              [checked]="day.vacation"
+              [value]="day.vacation"
+            />
+          </div>
         </td>
       </tr>
     </tbody>
