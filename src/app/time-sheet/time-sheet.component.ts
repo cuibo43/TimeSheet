@@ -87,9 +87,11 @@ export class TimeSheetComponent implements OnInit {
       return +time.substring(0, 2) + 12 + ":00:00";
     }
   }
-  save(){
-      console.log(this.summaries);
-      this.api.saveWeeklySummary(this.summaries).subscribe((result) => {console.log('good'); } );
+  save() {
+    console.log(this.summaries);
+    this.api.saveWeeklySummary(this.summaries).subscribe(result => {
+      console.log("good");
+    });
   }
   calBilling() {
     let billing = 0;

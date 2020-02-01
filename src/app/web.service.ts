@@ -46,7 +46,6 @@ export class WebService {
       JSON.stringify(WeeklySummary),
       httpOptions
     );
-
   }
 
   getWeeklySummaries() {

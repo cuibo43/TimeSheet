@@ -1,8 +1,8 @@
 <form id="week">
   <div class="form-inline row justify-content-between">
     <div class="form-group">
+      <label for="week" class="col-form-label mr-1">Week Ending</label>
       <div class="input-group">
-        <label for="week" class="col-form-label mr-1">Week Ending</label>
         <input
           type="text"
           class="form-control"
@@ -14,7 +14,7 @@
           placeholder="{{ summaries.endingDate }}"
         />
         <div class="input-group-append">
-          <button (click)="date.toggle()" type="button">
+          <button class="btn btn-light" (click)="date.toggle()" type="button">
             <i class="far fa-calendar-alt"></i>
           </button>
         </div>
@@ -82,6 +82,7 @@
             (change)="
               day.startingTime = timeTransferWithNull($event.target.value)
             "
+            [disabled]="summaries.approvalStatus"
           >
             <option [value]="'N/A'" [selected]="!day.startingTime">N/A</option>
             <ng-container *ngFor="let hour of timeHardCode">
@@ -99,6 +100,7 @@
             (change)="
               day.endingTime = timeTransferWithNull($event.target.value)
             "
+            [disabled]="summaries.approvalStatus"
           >
             <option [value]="'N/A'" [selected]="!day.endingTime">N/A</option>
             <ng-container *ngFor="let hour of timeHardCode">
@@ -112,10 +114,11 @@
         </td>
         <td>
           <select
-            class="form-control"
+            class="form-control form-control-sm"
             id="totalHours"
             [(ngModel)]="day.totalHours"
             [value]="day.totalHours"
+            [disabled]="summaries.approvalStatus"
           >
             <option *ngFor="let clock of hourOptions" [value]="clock">
               {{ clock }}
@@ -130,6 +133,7 @@
               [(ngModel)]="day.floatingDay"
               [checked]="day.floatingDay"
               [value]="day.floatingDay"
+              [disabled]="summaries.approvalStatus"
             />
           </div>
         </td>
@@ -141,6 +145,7 @@
               [(ngModel)]="day.holiday"
               [checked]="day.holiday"
               [value]="day.holiday"
+              [disabled]="summaries.approvalStatus"
             />
           </div>
         </td>
@@ -152,6 +157,7 @@
               [(ngModel)]="day.vacation"
               [checked]="day.vacation"
               [value]="day.vacation"
+              [disabled]="summaries.approvalStatus"
             />
           </div>
         </td>
