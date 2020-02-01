@@ -4,6 +4,8 @@ import { WeeklySummary } from "../model/weekly-summary";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { YearlyVacation } from "./YearlyVacation";
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: "app-summary",
@@ -19,7 +21,8 @@ export class SummaryComponent implements OnInit {
   vacationLeft$: Observable<YearlyVacation>;
   vacationLeft: YearlyVacation;
 
-  constructor(private api: WebService) {}
+  constructor(private api: WebService,  private router: Router
+    ) {}
 
   ngOnInit() {
     this.summaries$ = this.api.getWeeklySummaries().pipe(map(data => data));
@@ -28,6 +31,11 @@ export class SummaryComponent implements OnInit {
 
   onShowMorePressed() {
     this.end += 5;
+  }
+
+  view(endingDate){
+    this.router.navigate(['/timeSheet'], { queryParams: {endingDay: endingDate}});
+
   }
 
   gCommentTag(summary: WeeklySummary) {

@@ -22,6 +22,19 @@ export class WebService {
       httpOptions
     );
   }
+  saveWeeklySummary(WeeklySummary){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json; charset=UTF-8"
+      })
+    };
+    return this.http.post(
+      "api/summary/updateSummary",
+      JSON.stringify(WeeklySummary),
+      httpOptions
+    );
+
+  }
 
   getWeeklySummaries() {
     return this.http.get<WeeklySummary[]>("api/summary/all");
