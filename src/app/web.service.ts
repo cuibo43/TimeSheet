@@ -22,7 +22,7 @@ export class WebService {
       httpOptions
     );
   }
-  saveWeeklySummary(WeeklySummary){
+  saveWeeklySummary(WeeklySummary) {
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json; charset=UTF-8"
@@ -33,7 +33,6 @@ export class WebService {
       JSON.stringify(WeeklySummary),
       httpOptions
     );
-
   }
 
   getWeeklySummaries() {

@@ -6,7 +6,6 @@ import { map } from "rxjs/operators";
 import { YearlyVacation } from "./YearlyVacation";
 import { Router } from "@angular/router";
 
-
 @Component({
   selector: "app-summary",
   templateUrl: "./summary.component.html",
@@ -21,8 +20,7 @@ export class SummaryComponent implements OnInit {
   vacationLeft$: Observable<YearlyVacation>;
   vacationLeft: YearlyVacation;
 
-  constructor(private api: WebService,  private router: Router
-    ) {}
+  constructor(private api: WebService, private router: Router) {}
 
   ngOnInit() {
     this.summaries$ = this.api.getWeeklySummaries().pipe(map(data => data));
@@ -33,9 +31,10 @@ export class SummaryComponent implements OnInit {
     this.end += 5;
   }
 
-  view(endingDate){
-    this.router.navigate(['/timeSheet'], { queryParams: {endingDay: endingDate}});
-
+  view(endingDate) {
+    this.router.navigate(["/timeSheet"], {
+      queryParams: { endingDay: endingDate }
+    });
   }
 
   gCommentTag(summary: WeeklySummary) {
