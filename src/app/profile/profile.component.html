@@ -8,41 +8,41 @@
   <tbody>
     <tr>
       <td scope="row" style="text-align: left;">User Name</td>
-      <td style="text-align: left;">David</td>
+    <td style="text-align: left;">{{profile.username}}</td>
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">User Phone Number</td>
-      <td style="text-align: left;">(312)838-0982</td>
+      <td style="text-align: left;">{{profile.phoneNumber}}</td>
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">User Email Address</td>
-      <td style="text-align: left;">guoshangpeng1995@gmail.com</td>
+      <td style="text-align: left;">{{profile.email}}</td>
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">User Home Address</td>
       <td style="text-align: left;">
-        75 Tennyson Rd, East Windsor, New Jersey, 08520
+        {{profile.address}}
       </td>
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">Emergency Contact 1</td>
-      <td style="text-align: left;">James Cui</td>
+      <td style="text-align: left;">{{profile.contact1FirstName}} {{profile.contact1LastName}}</td>
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">
         Emergency Contact 1 Phone Number
       </td>
-      <td style="text-align: left;">(123)456-7890</td>
+      <td style="text-align: left;">{{profile.contact1PhoneNumber}}</td>
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">Emergency Contact 2</td>
-      <td style="text-align: left;">Lambert Lin</td>
+      <td style="text-align: left;">{{profile.contact2FirstName}} {{profile.contact2LastName}}</td>
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">
         Emergency Contact 2 Phone Number
       </td>
-      <td style="text-align: left;">(123)456-7890</td>
+      <td style="text-align: left;">{{profile.contact2PhoneNumber}}</td>
     </tr>
   </tbody>
 </table>
@@ -80,7 +80,7 @@
               type="phoneNumber"
               class="form-control"
               id="phoneNumber"
-              placeholder="(312)838-0982"
+              placeholder={{profile.phoneNumber}}
               formControlName="phoneNumber"
             />
             <div
@@ -101,7 +101,7 @@
               type="email"
               class="form-control"
               id="email"
-              placeholder="EmailID@gmail.com"
+              placeholder={{profile.email}}
               formControlName="email"
             />
             <div
@@ -119,7 +119,7 @@
               class="form-control"
               id="address"
               rows="3"
-              placeholder="(Home Address) &#13;&#10;75 Tennyson Rd, East Windsor, NJ, 08520"
+              [placeholder]=" '(Home Address)' +  profile.address"
             ></textarea>
           </div>
           <div class="form-group">
@@ -128,7 +128,7 @@
               type="fullName1"
               class="form-control"
               id="fullName1"
-              placeholder="First Name, Last Name"
+              [placeholder]="profile.contact1FirstName+', '+profile.contact1LastName"
               formControlName="fullName1"
             />
           </div>
@@ -138,7 +138,7 @@
               type="phoneNumber1"
               class="form-control"
               id="phoneNumber1"
-              placeholder="(312)838-0982"
+              placeholder={{profile.contact1PhoneNumber}}
               formControlName="phoneNumber1"
             />
             <div
@@ -159,7 +159,7 @@
               type="fullName2"
               class="form-control"
               id="fullName2"
-              placeholder="First Name, Last Name"
+              [placeholder]="profile.contact2FirstName+', '+profile.contact2LastName"
               formControlName="fullName2"
             />
           </div>
@@ -169,7 +169,7 @@
               type="phoneNumber2"
               class="form-control"
               id="phoneNumber2"
-              placeholder="(312)838-0982"
+              placeholder={{profile.contact2PhoneNumber}}
               formControlName="phoneNumber2"
             />
             <div
