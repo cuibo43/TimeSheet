@@ -25,7 +25,11 @@
       </td>
       <td>{{ summary.approvalStatus }}</td>
       <td>
-        <button type="button" class="btn btn-light">
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="view(summary.endingDate)"
+        >
           <span *ngIf="summary.approvalStatus === 'Approved'; else edit">
             View
           </span>

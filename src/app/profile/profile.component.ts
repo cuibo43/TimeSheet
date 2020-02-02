@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "../model/user";
 import { FormBuilder, Validators } from "@angular/forms";
 import { WebService } from "../web.service";
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-profile",

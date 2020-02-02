@@ -89,6 +89,9 @@ export class TimeSheetComponent implements OnInit {
   }
   save() {
     console.log(this.summaries);
+    this.api.saveWeeklySummary(this.summaries).subscribe(result => {
+      console.log("good");
+    });
   }
   calBilling() {
     let billing = 0;

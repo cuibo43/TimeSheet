@@ -4,15 +4,28 @@ import { ProfileComponent } from "./profile/profile.component";
 import { SummaryComponent } from "./summary/summary.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+
+import { AuthGaurdService } from "./auth-gaurd.service";
 
 const routes: Routes = [
-  { path: "summary", component: SummaryComponent },
-  { path: "timeSheet", component: TimeSheetComponent },
-  { path: "profile", component: ProfileComponent },
+  {
+    path: "summary",
+    component: SummaryComponent,
+    canActivate: [AuthGaurdService]
+  },
+  {
+    path: "timeSheet",
+    component: TimeSheetComponent,
+    canActivate: [AuthGaurdService]
+  },
+  {
+    path: "profile",
+    component: ProfileComponent,
+    canActivate: [AuthGaurdService]
+  },
   { path: "login", component: LoginComponent },
-  { path: "", redirectTo: "/summary", pathMatch: "full" },
-  { path: "**", component: PageNotFoundComponent }
+  { path: "", redirectTo: "/login", pathMatch: "full" },
+  { path: "**", component: LoginComponent }
 ];
 
 @NgModule({
