@@ -1,9 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,ElementRef, ViewChild } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
 import { ActivatedRoute, Router } from "@angular/router";
+import {FileUploader} from 'ng2-file-upload';
+
 
 @Component({
   selector: "app-time-sheet",
@@ -11,6 +13,7 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["./time-sheet.component.css"]
 })
 export class TimeSheetComponent implements OnInit {
+  @ViewChild('fileInput', {static: false}) fileInput: ElementRef;
   endingDay: string;
   endDate: { year: number; month: number; day: number };
   summaries$: Observable<WeeklySummary>;
@@ -30,6 +33,9 @@ export class TimeSheetComponent implements OnInit {
     "07:00 PM"
   ];
   hourOptions = [...Array(13).keys()];
+  uploader: FileUploader;
+  isDropOver: boolean;
+  fileName = "File Name";
 
   constructor(
     private api: WebService,
@@ -49,7 +55,14 @@ export class TimeSheetComponent implements OnInit {
     this.summaries$.subscribe(data => {
       this.summaries = data;
     });
+    const headers = [{name: 'Accept', value: 'application/json'}];
+    this.uploader = new FileUploader({url: 'api/summary/files', autoUpload: true, headers: headers});
+    this.uploader.onCompleteAll = () => alert('File uploaded');
   }
+  onFileChanged(event) {
+    this.fileName= event.target.files[0].name;
+    }
+
   changeDate() {
     this.endingDay =
       this.endDate.year +
@@ -100,6 +113,8 @@ export class TimeSheetComponent implements OnInit {
     }
     return billing;
   }
+
+
 
   calCompensated() {
     let compensated = 0;

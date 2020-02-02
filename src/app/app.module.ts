@@ -7,13 +7,13 @@ import { SummaryComponent } from "./summary/summary.component";
 import { TimeSheetComponent } from "./time-sheet/time-sheet.component";
 import { ProfileComponent } from "./profile/profile.component";
 
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from "./authentication.service";
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { AuthGaurdService } from './auth-gaurd.service';
+import { AuthGaurdService } from "./auth-gaurd.service";
 import { WebService } from "./web.service";
 import { LoginComponent } from "./login/login.component";
-
+import {FileUploadModule} from "ng2-file-upload";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
@@ -30,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    FileUploadModule
   ],
 
   providers: [WebService,AuthGaurdService,AuthenticationService],
