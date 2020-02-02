@@ -50,6 +50,7 @@ export class TimeSheetComponent implements OnInit {
       this.summaries = data;
     });
   }
+
   changeDate() {
     this.endingDay =
       this.endDate.year +
@@ -61,6 +62,7 @@ export class TimeSheetComponent implements OnInit {
       queryParams: { endingDay: this.endingDay }
     });
   }
+
   timeFit(startingTime, hour) {
     if (this.timeTransfer(hour) === startingTime) {
       return true;
@@ -68,6 +70,7 @@ export class TimeSheetComponent implements OnInit {
       return false;
     }
   }
+
   timeTransferWithNull(time: string) {
     if (time === "N/A") {
       return null;
@@ -87,12 +90,14 @@ export class TimeSheetComponent implements OnInit {
       return +time.substring(0, 2) + 12 + ":00:00";
     }
   }
+
   save() {
     console.log(this.summaries);
     this.api.saveWeeklySummary(this.summaries).subscribe(result => {
       console.log("good");
     });
   }
+
   calBilling() {
     let billing = 0;
     for (const day of this.summaries.days) {
