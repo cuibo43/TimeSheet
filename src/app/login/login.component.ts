@@ -1,4 +1,4 @@
-import { AuthenticationService } from './../authentication.service';
+import { AuthenticationService } from "./../authentication.service";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -27,15 +27,22 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
   SignIn() {
-    this.ws.authenticate(this.loginForm.get('userName').value, this.loginForm.get('passWord').value)
-    .subscribe(responseData => {
-      this.token=responseData['token'];
-      this.UserName=responseData['username'];
-      console.log(this.token);
-      if(this.UserName !== null){
-        this.loginservice.setToken(this.UserName,this.token);
-        this.router.navigate(['summary']);}
-    },        error => this.isWrong=true
-    );
+    this.ws
+      .authenticate(
+        this.loginForm.get("userName").value,
+        this.loginForm.get("passWord").value
+      )
+      .subscribe(
+        responseData => {
+          this.token = responseData["token"];
+          this.UserName = responseData["username"];
+          console.log(this.token);
+          if (this.UserName !== null) {
+            this.loginservice.setToken(this.UserName, this.token);
+            this.router.navigate(["summary"]);
+          }
+        },
+        error => (this.isWrong = true)
+      );
   }
 }
