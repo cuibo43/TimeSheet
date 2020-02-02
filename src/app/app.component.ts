@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { AuthenticationService } from "./authentication.service";
 
 @Component({
   selector: "app-root",
@@ -7,7 +8,15 @@ import { Router } from "@angular/router";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private as: AuthenticationService) {}
+  IsLogged() {
+    return this.as.isUserLoggedIn();
+  }
+
+  Logout() {
+    this.as.logOut();
+    this.router.navigate(["/login"]);
+  }
   gotoTimeSheet() {
     const utc = new Date().toJSON().slice(0, 10);
     this.router.navigate(["/timeSheet"], { queryParams: { endingDay: utc } });

@@ -16,7 +16,12 @@
       <button class="btn btn-dark" (click)="gotoSummary()">Summary</button>
       <button class="btn btn-dark" (click)="gotoTimeSheet()">Time Sheet</button>
       <button class="btn btn-dark" (click)="gotoProfile()">Profile</button>
-      <button class="btn btn-dark" (click)="gotoLog()">Log In</button>
+      <ng-container *ngIf="!IsLogged()">
+        <button class="btn btn-dark" (click)="gotoLog()">Log In</button>
+      </ng-container>
+      <ng-container *ngIf="IsLogged()">
+        <button (click)="Logout()" class="btn btn-dark">Log out</button>
+      </ng-container>
     </div>
   </ul>
 </nav>
