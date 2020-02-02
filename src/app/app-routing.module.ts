@@ -4,7 +4,6 @@ import { ProfileComponent } from "./profile/profile.component";
 import { SummaryComponent } from "./summary/summary.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-
 import { AuthGaurdService } from "./auth-gaurd.service";
 
 const routes: Routes = [
