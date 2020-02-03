@@ -1,11 +1,10 @@
-import { Component, OnInit,ElementRef, ViewChild } from "@angular/core";
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
 import { ActivatedRoute, Router } from "@angular/router";
-import {FileUploader} from 'ng2-file-upload';
-
+import { FileUploader } from "ng2-file-upload";
 
 @Component({
   selector: "app-time-sheet",
@@ -13,7 +12,7 @@ import {FileUploader} from 'ng2-file-upload';
   styleUrls: ["./time-sheet.component.css"]
 })
 export class TimeSheetComponent implements OnInit {
-  @ViewChild('fileInput', {static: false}) fileInput: ElementRef;
+  @ViewChild("fileInput", { static: false }) fileInput: ElementRef;
   endingDay: string;
   endDate: { year: number; month: number; day: number };
   summaries$: Observable<WeeklySummary>;
@@ -56,13 +55,17 @@ export class TimeSheetComponent implements OnInit {
     this.summaries$.subscribe(data => {
       this.summaries = data;
     });
-    const headers = [{name: 'Accept', value: 'application/json'}];
-    this.uploader = new FileUploader({url: 'api/summary/files', autoUpload: true, headers: headers});
-    this.uploader.onCompleteAll = () => alert('File uploaded');
+    const headers = [{ name: "Accept", value: "application/json" }];
+    this.uploader = new FileUploader({
+      url: "api/summary/files",
+      autoUpload: true,
+      headers
+    });
+    this.uploader.onCompleteAll = () => alert("File uploaded");
   }
   onFileChanged(event) {
-    this.fileName= event.target.files[0].name;
-    }
+    this.fileName = event.target.files[0].name;
+  }
 
   changeDate() {
     this.endingDay =
@@ -105,8 +108,8 @@ export class TimeSheetComponent implements OnInit {
   }
 
   save() {
-    if(this.isApproved==="true"&&this.fileName!=="File Name"){
-      this.summaries.comment=this.fileName;
+    if (this.isApproved === "true" && this.fileName !== "File Name") {
+      this.summaries.comment = this.fileName;
       this.summaries.approvalStatus = "Approved";
     }
     console.log(this.summaries);
@@ -123,8 +126,6 @@ export class TimeSheetComponent implements OnInit {
     }
     return billing;
   }
-
-
 
   calCompensated() {
     let compensated = 0;

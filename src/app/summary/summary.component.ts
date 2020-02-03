@@ -1,4 +1,4 @@
-import { YearVacation } from './YearVacation';
+import { YearVacation } from "./YearVacation";
 import { Component, OnInit } from "@angular/core";
 import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
@@ -38,7 +38,7 @@ export class SummaryComponent implements OnInit {
   }
 
   gCommentTag(summary: WeeklySummary) {
-    if (!this.yearVacation.some(e => e.year === summary.year )) {
+    if (!this.yearVacation.some(e => e.year === summary.year)) {
       this.vacationLeft$ = this.api
         .getVacationLeft(summary)
         .pipe(map(data => data));
@@ -46,12 +46,14 @@ export class SummaryComponent implements OnInit {
       this.vacationLeft$.subscribe(data => {
         // vacationLeft = data;
         this.yearVacation.push({
-          year : summary.year,
+          year: summary.year,
           yearlyVacation: data
+        });
       });
-    });}
+    }
     console.log(this.yearVacation);
-    return this.yearVacation.filter(e => e.year === summary.year)[0].yearlyVacation;
+    return this.yearVacation.filter(e => e.year === summary.year)[0]
+      .yearlyVacation;
   }
 
   gComment(summary: WeeklySummary) {

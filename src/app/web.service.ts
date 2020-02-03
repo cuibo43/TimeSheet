@@ -87,7 +87,10 @@ export class WebService {
         Authorization: "Bearer " + token
       })
     };
-    return this.http.post<User>("api/summary/detail",JSON.stringify(""),
-    httpOptions);
+    return this.http.post<User>(
+      "api/summary/detail",
+      JSON.stringify(""),
+      httpOptions
+    );
   }
 }
