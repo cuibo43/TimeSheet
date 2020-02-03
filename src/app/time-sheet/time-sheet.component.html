@@ -173,20 +173,12 @@
 <div class="row">
   <div class="col-12 p-0">
     <div class="dropdown d-inline-block mr-3">
-      <select class="form-control" [disabled]="summaries.approvalStatus==='Approved'">
+      <select class="form-control" [(ngModel)]="isApproved" [disabled]="summaries.approvalStatus==='Approved'">
       <option [value]="'true'">Approved Timesheet </option>
       <option [value]="'false'">Unapproved Timesheet </option>
     </select>
     </div>
     <div class="custom-file d-inline-block col-2">
-      <!-- <input #fileInput type="file" ng2FileSelect [uploader]="uploader"/>
-      <div class="drop-box" ng2FileDrop
-           [ngClass]="{'dragover': isDropOver}"
-           [uploader]="uploader"
-           (fileOver)="fileOverAnother($event)"
-           (click)="fileClicked()">
-        <span class="drag-in-title">Import or drag file</span>
-      </div> -->
       <label>{{fileName}}</label>
       <input style="display: none" type="file" (change)="onFileChanged($event)"
       ng2FileSelect [uploader]="uploader"  #fileInput>

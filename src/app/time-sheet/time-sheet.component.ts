@@ -34,8 +34,9 @@ export class TimeSheetComponent implements OnInit {
   ];
   hourOptions = [...Array(13).keys()];
   uploader: FileUploader;
-  isDropOver: boolean;
+  // isDropOver: boolean;
   fileName = "File Name";
+  isApproved: string;
 
   constructor(
     private api: WebService,
@@ -101,10 +102,15 @@ export class TimeSheetComponent implements OnInit {
     }
   }
   save() {
+    if(this.isApproved==="true"&&this.fileName!=="File Name"){
+      this.summaries.comment=this.fileName;
+      this.summaries.approvalStatus = "Approved";
+    }
     console.log(this.summaries);
-    this.api.saveWeeklySummary(this.summaries).subscribe(result => {
-      console.log("good");
-    });
+    // this.api.saveWeeklySummary(this.summaries).subscribe(result => {
+    //   console.log("good");
+    // });
+    this.router.navigate(["/summary"]);
   }
   calBilling() {
     let billing = 0;
