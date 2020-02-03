@@ -187,21 +187,21 @@ export class TimeSheetComponent implements OnInit {
     // });
   }
 
-  calBilling() {
-    let billing = 0;
+  calBilling(): number {
+    let billing = 0.0;
     for (const day of this.summaries.days) {
-      billing = billing + day.totalHours;
+      billing += +day.totalHours;
     }
     return billing;
   }
 
-  calCompensated() {
+  calCompensated(): number {
     let compensated = 0;
     for (const day of this.summaries.days) {
       if (day.floatingDay) {
-        compensated = compensated + 8;
+        compensated += 8;
       }
-      compensated = compensated + day.totalHours;
+      compensated += +day.totalHours;
     }
     return compensated;
   }
