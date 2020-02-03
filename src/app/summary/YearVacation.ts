@@ -1,4 +1,4 @@
-import { YearlyVacation } from './YearlyVacation';
+import { YearlyVacation } from "./YearlyVacation";
 
 export class YearVacation {
   year: number;
