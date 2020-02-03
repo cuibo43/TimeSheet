@@ -84,7 +84,6 @@ export class WebService {
     const token = sessionStorage.getItem("token");
     const httpOptions = {
       headers: new HttpHeaders({
-
         "Content-Type": "application/json; charset=UTF-8",
 
         Authorization: "Bearer " + token
