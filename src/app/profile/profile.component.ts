@@ -64,7 +64,6 @@ export class ProfileComponent implements OnInit {
     this.api.saveUserInfo(this.profile).subscribe(result => {
       console.log("good");
     });
-
   }
 
   // onSubmit() {
