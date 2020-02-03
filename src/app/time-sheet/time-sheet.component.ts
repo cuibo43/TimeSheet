@@ -60,9 +60,9 @@ export class TimeSheetComponent implements OnInit {
       this.summaries = data;
       this.vacationLeft$ = this.api
       .getVacationLeft(data)
-      .pipe(map( data => data));
-      this.vacationLeft$.subscribe( data => {
-        this.vacationLeft = data;
+      .pipe(map( data1 => data1));
+      this.vacationLeft$.subscribe( data2 => {
+        this.vacationLeft = data2;
       });
     });
     const headers = [{ name: "Accept", value: "application/json" }];
