@@ -87,11 +87,7 @@
             (change)="
               day.startingTime = timeTransferWithNull($event.target.value)
             "
-<<<<<<< HEAD
-            [disabled]="summaries.approvalStatus==='Approved'"
-=======
             [disabled]="summaries.approvalStatus === 'Approved'"
->>>>>>> David
           >
             <option [value]="'N/A'" [selected]="!day.startingTime">N/A</option>
             <ng-container *ngFor="let hour of timeHardCode">
@@ -109,11 +105,7 @@
             (change)="
               day.endingTime = timeTransferWithNull($event.target.value)
             "
-<<<<<<< HEAD
-            [disabled]="summaries.approvalStatus==='Approved'"
-=======
             [disabled]="summaries.approvalStatus === 'Approved'"
->>>>>>> David
           >
             <option [value]="'N/A'" [selected]="!day.endingTime">N/A</option>
             <ng-container *ngFor="let hour of timeHardCode">
@@ -131,11 +123,7 @@
             id="totalHours"
             [(ngModel)]="day.totalHours"
             [value]="day.totalHours"
-<<<<<<< HEAD
-            [disabled]="summaries.approvalStatus==='Approved'"
-=======
             [disabled]="summaries.approvalStatus === 'Approved'"
->>>>>>> David
           >
             <option *ngFor="let clock of hourOptions" [value]="clock">
               {{ clock }}

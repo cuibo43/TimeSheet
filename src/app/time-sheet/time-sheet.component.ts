@@ -60,12 +60,9 @@ export class TimeSheetComponent implements OnInit {
     this.uploader = new FileUploader({url: 'api/summary/files', autoUpload: true, headers: headers});
     this.uploader.onCompleteAll = () => alert('File uploaded');
   }
-<<<<<<< HEAD
   onFileChanged(event) {
     this.fileName= event.target.files[0].name;
     }
-=======
->>>>>>> David
 
   changeDate() {
     this.endingDay =
