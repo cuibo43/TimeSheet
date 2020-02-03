@@ -13,7 +13,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AuthGaurdService } from "./auth-gaurd.service";
 import { WebService } from "./web.service";
 import { LoginComponent } from "./login/login.component";
-
+import { FileUploadModule } from "ng2-file-upload";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 
@@ -32,7 +32,8 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    FileUploadModule
   ],
 
   providers: [WebService, AuthGaurdService, AuthenticationService],

@@ -41,7 +41,7 @@
           {{ gComment(summary)[0] }} Floating day(s) required.
           <i
             class="fas fa-info-circle"
-            ngbPopover="Total floating days left in {{ currentYear }} : {{
+            ngbPopover="Total floating days left in {{ summary.year }} : {{
               gCommentTag(summary).floatingDayLeft
             }} days"
             triggers="mouseenter:mouseleave"
@@ -51,7 +51,7 @@
           {{ gComment(summary)[1] }} Vacation day(s) required.
           <i
             class="fas fa-info-circle"
-            ngbPopover="Total vacation left in {{ currentYear }} : {{
+            ngbPopover="Total vacation left in {{ summary.year }} : {{
               gCommentTag(summary).vacationLeft
             }} days"
             triggers="mouseenter:mouseleave"

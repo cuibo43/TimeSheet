@@ -54,6 +54,11 @@
   <div class="col-12 p-0">
     <button type="button" class="btn btn-outline-primary float-right">
       Set Default
+      <i
+        class="fas fa-info-circle"
+        ngbPopover="Save daily hours as default;future weekly timesheet will show same hours."
+        triggers="mouseenter:mouseleave"
+      ></i>
     </button>
   </div>
 </div>
@@ -133,7 +138,7 @@
               [(ngModel)]="day.floatingDay"
               [checked]="day.floatingDay"
               [value]="day.floatingDay"
-              [disabled]="summaries.approvalStatus"
+              [disabled]="summaries.approvalStatus === 'Approved'"
             />
           </div>
         </td>
@@ -145,7 +150,7 @@
               [(ngModel)]="day.holiday"
               [checked]="day.holiday"
               [value]="day.holiday"
-              [disabled]="summaries.approvalStatus"
+              [disabled]="summaries.approvalStatus === 'Approved'"
             />
           </div>
         </td>
@@ -157,7 +162,7 @@
               [(ngModel)]="day.vacation"
               [checked]="day.vacation"
               [value]="day.vacation"
-              [disabled]="summaries.approvalStatus"
+              [disabled]="summaries.approvalStatus === 'Approved'"
             />
           </div>
         </td>
@@ -168,27 +173,41 @@
 <div class="row">
   <div class="col-12 p-0">
     <div class="dropdown d-inline-block mr-3">
-      <button
-        class="btn btn-outline-primary dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
+      <select
+        class="form-control"
+        [(ngModel)]="isApproved"
+        [disabled]="summaries.approvalStatus === 'Approved'"
       >
-        Approval Status
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item">Approved Timesheet</a>
-        <a class="dropdown-item">Unapproved Timesheet</a>
-      </div>
+        <option [value]="'true'">Approved Timesheet </option>
+        <option [value]="'false'">Unapproved Timesheet </option>
+      </select>
     </div>
     <div class="custom-file d-inline-block col-2">
-      <input type="file" class="custom-file-input" id="file" />
-      <label class="custom-file-label" for="file">Choose file</label>
+      <label>{{ fileName }}</label>
+      <input
+        style="display: none"
+        type="file"
+        (change)="onFileChanged($event)"
+        ng2FileSelect
+        [uploader]="uploader"
+        #fileInput
+      />
+      <button
+        type="button"
+        (click)="fileInput.click()"
+        ng2FileSelect
+        [uploader]="uploader"
+        [disabled]="summaries.approvalStatus === 'Approved'"
+      >
+        Select File
+      </button>
     </div>
-
-    <button class="btn btn-primary float-right" type="button" (click)="save()">
+    <button
+      class="btn btn-primary float-right"
+      type="button"
+      (click)="save()"
+      [disabled]="summaries.approvalStatus === 'Approved'"
+    >
       Save
     </button>
   </div>

@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 import { WebService } from "../web.service";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
+import { FileUploader } from "ng2-file-upload";
 
 @Component({
   selector: "app-profile",
@@ -14,6 +15,9 @@ export class ProfileComponent implements OnInit {
   profile$: Observable<User>;
   profile: User;
   user: User;
+  uploader: FileUploader;
+  // isDropOver: boolean;
+  fileName = "File Name";
   form;
   constructor(private api: WebService, formBuilder: FormBuilder) {
     this.form = formBuilder.group({
@@ -37,6 +41,16 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.profile$ = this.api.getUserInfo().pipe(map(data => data));
     this.profile$.subscribe(data => (this.profile = data));
+    const headers = [{ name: "Accept", value: "application/json" }];
+    this.uploader = new FileUploader({
+      url: "api/summary/pic",
+      autoUpload: true,
+      headers: headers
+    });
+    this.uploader.onCompleteAll = () => alert("File uploaded");
+  }
+  onFileChanged(event) {
+    this.fileName = event.target.files[0].name;
   }
 
   save() {

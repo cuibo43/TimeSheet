@@ -1,3 +1,4 @@
+import { YearVacation } from "./YearVacation";
 import { Component, OnInit } from "@angular/core";
 import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
@@ -15,16 +16,15 @@ export class SummaryComponent implements OnInit {
   summaries$: Observable<WeeklySummary[]>;
   summaries: WeeklySummary[];
   end = 5;
-  currentYear = -1;
-
+  yearVacation: YearVacation[];
   vacationLeft$: Observable<YearlyVacation>;
-  vacationLeft: YearlyVacation;
 
   constructor(private api: WebService, private router: Router) {}
 
   ngOnInit() {
     this.summaries$ = this.api.getWeeklySummaries().pipe(map(data => data));
     this.summaries$.subscribe(data => (this.summaries = data));
+    this.yearVacation = [];
   }
 
   onShowMorePressed() {
@@ -38,14 +38,22 @@ export class SummaryComponent implements OnInit {
   }
 
   gCommentTag(summary: WeeklySummary) {
-    if (summary.year !== this.currentYear) {
+    if (!this.yearVacation.some(e => e.year === summary.year)) {
       this.vacationLeft$ = this.api
         .getVacationLeft(summary)
         .pipe(map(data => data));
-      this.vacationLeft$.subscribe(data => (this.vacationLeft = data));
-      this.currentYear = summary.year;
+      // let vacationLeft:YearlyVacation=null;
+      this.vacationLeft$.subscribe(data => {
+        // vacationLeft = data;
+        this.yearVacation.push({
+          year: summary.year,
+          yearlyVacation: data
+        });
+      });
     }
-    return this.vacationLeft;
+    console.log(this.yearVacation);
+    return this.yearVacation.filter(e => e.year === summary.year)[0]
+      .yearlyVacation;
   }
 
   gComment(summary: WeeklySummary) {
