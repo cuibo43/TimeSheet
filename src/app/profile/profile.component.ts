@@ -39,6 +39,13 @@ export class ProfileComponent implements OnInit {
     this.profile$.subscribe(data => (this.profile = data));
   }
 
+  save() {
+    console.log(this.profile);
+    this.api.saveUserInfo(this.profile).subscribe(result => {
+      console.log("good");
+    });
+  }
+
   onSubmit() {
     const usr = new User();
     usr.phoneNumber = this.form.get("phoneNumber").value;

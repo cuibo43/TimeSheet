@@ -81,6 +81,30 @@ export class WebService {
   }
 
   getUserInfo() {
-    return this.http.get<User>("api/profile/detail");
+    const token = sessionStorage.getItem("token");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json; charset=UTF-8",
+        Authorization: "Bearer " + token
+      })
+    };
+    return this.http.get<User>(
+      "api/summary/detail"
+
+    );
+  }
+  saveUserInfo(User) {
+    const token = sessionStorage.getItem("token");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json; charset=UTF-8",
+        Authorization: "Bearer " + token
+      })
+    };
+    return this.http.post(
+      "api/summary/updateDetail",
+      JSON.stringify(User),
+      httpOptions
+    );
   }
 }
