@@ -88,11 +88,13 @@ export class WebService {
         Authorization: "Bearer " + token
       })
     };
-    return this.http.get<User>(
-      "api/summary/detail"
-
+    return this.http.post<User>(
+      "api/summary/detail",
+      JSON.stringify(User),
+      httpOptions
     );
   }
+
   saveUserInfo(User) {
     const token = sessionStorage.getItem("token");
     const httpOptions = {
