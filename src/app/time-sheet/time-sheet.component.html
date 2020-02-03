@@ -174,7 +174,7 @@
   <div class="col-12 p-0">
     <div class="dropdown d-inline-block mr-3">
       <select class="form-control" [(ngModel)]="isApproved" [disabled]="summaries.approvalStatus==='Approved'">
-      <option [value]="'true'">Approved Timesheet </option>
+      <option [value]="'true'" [selected]="true">Approved Timesheet </option>
       <option [value]="'false'">Unapproved Timesheet </option>
     </select>
     </div>

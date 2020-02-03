@@ -109,7 +109,7 @@ export class TimeSheetComponent implements OnInit {
       this.summaries.comment=this.fileName;
       this.summaries.approvalStatus = "Approved";
     }
-    console.log(this.summaries);
+    this.summaries.totalHours=this.calBilling();
     this.api.saveWeeklySummary(this.summaries).subscribe(result => {
       console.log("good");
     });
