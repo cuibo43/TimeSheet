@@ -33,7 +33,6 @@ export class TimeSheetComponent implements OnInit {
   ];
   hourOptions = [...Array(13).keys()];
   uploader: FileUploader;
-  // isDropOver: boolean;
   fileName = "File Name";
   isApproved: string;
 
@@ -63,6 +62,48 @@ export class TimeSheetComponent implements OnInit {
     });
     this.uploader.onCompleteAll = () => alert("File uploaded");
   }
+  floatingCheck(day){
+    let tempDay =  this.summaries.days.find(x => x.date == day);
+    tempDay.endingTime=null;
+    tempDay.startingTime=null;
+    tempDay.totalHours=0;
+    if(tempDay.holiday===true){
+      tempDay.holiday=false;
+    }
+    if(tempDay.vacation===true){
+      tempDay.vacation=false;
+    }
+  }
+
+  vacationCheck(day){
+    let tempDay =  this.summaries.days.find(x => x.date == day);
+    tempDay.endingTime=null;
+    tempDay.startingTime=null;
+    tempDay.totalHours=0;
+    if(tempDay.holiday===true){
+      tempDay.holiday=false;
+    }
+    if(tempDay.floatingDay===true){
+      tempDay.floatingDay=false;
+    }
+  }
+
+  holidayCheck(day){
+    let tempDay =  this.summaries.days.find(x => x.date == day);
+    tempDay.endingTime=null;
+    tempDay.startingTime=null;
+    tempDay.totalHours=0;
+    if(tempDay.vacation===true){
+      tempDay.vacation=false;
+    }
+    if(tempDay.floatingDay===true){
+      tempDay.floatingDay=false;
+    }
+  }
+
+
+
+
   onFileChanged(event) {
     this.fileName = event.target.files[0].name;
   }
@@ -113,10 +154,11 @@ export class TimeSheetComponent implements OnInit {
       this.summaries.approvalStatus = "Approved";
     }
     this.summaries.totalHours=this.calBilling();
-    this.api.saveWeeklySummary(this.summaries).subscribe(result => {
-      console.log("good");
-    });
-    this.router.navigate(["/summary"]);
+    window.alert("Saved Changes!");
+
+    // this.api.saveWeeklySummary(this.summaries).subscribe(result => {
+    //   console.log("good");
+    // });
   }
 
   calBilling() {

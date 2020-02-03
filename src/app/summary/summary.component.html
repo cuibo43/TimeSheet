@@ -15,7 +15,7 @@
       <td>{{ summary.totalHours }}</td>
       <td>
         {{ summary.submissionStatus }}
-        <ng-container *ngIf="summary.submissionStatus === 'Incomplete'">
+        <ng-container *ngIf="summary.comment === ''">
           <i
             class="fas fa-info-circle"
             ngbPopover="Items due: Proof of Approved TimeSheet"
@@ -70,4 +70,11 @@
   *ngIf="end < summaries.length"
 >
   Show More
+</button>
+<button
+  class="btn btn-primary"
+  (click)="onShowLessPressed()"
+  *ngIf="end >= summaries.length"
+>
+  Show Less
 </button>

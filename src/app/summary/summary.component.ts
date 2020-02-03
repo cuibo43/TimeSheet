@@ -31,6 +31,10 @@ export class SummaryComponent implements OnInit {
     this.end += 5;
   }
 
+  onShowLessPressed() {
+    this.end -= 5;
+  }
+
   view(endingDate) {
     this.router.navigate(["/timeSheet"], {
       queryParams: { endingDay: endingDate }
@@ -42,9 +46,7 @@ export class SummaryComponent implements OnInit {
       this.vacationLeft$ = this.api
         .getVacationLeft(summary)
         .pipe(map(data => data));
-      // let vacationLeft:YearlyVacation=null;
       this.vacationLeft$.subscribe(data => {
-        // vacationLeft = data;
         this.yearVacation.push({
           year: summary.year,
           yearlyVacation: data

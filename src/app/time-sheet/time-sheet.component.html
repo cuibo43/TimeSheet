@@ -139,6 +139,7 @@
               [checked]="day.floatingDay"
               [value]="day.floatingDay"
               [disabled]="summaries.approvalStatus === 'Approved'"
+              (change)="floatingCheck(day.date)"
             />
           </div>
         </td>
@@ -151,6 +152,8 @@
               [checked]="day.holiday"
               [value]="day.holiday"
               [disabled]="summaries.approvalStatus === 'Approved'"
+              (change)="holidayCheck(day.date)"
+
             />
           </div>
         </td>
@@ -163,6 +166,8 @@
               [checked]="day.vacation"
               [value]="day.vacation"
               [disabled]="summaries.approvalStatus === 'Approved'"
+              (change)="vacationCheck(day.date)"
+
             />
           </div>
         </td>

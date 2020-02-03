@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { LoginComponent } from "./login/login.component";
 import { TimeSheetComponent } from "./time-sheet/time-sheet.component";
 import { ProfileComponent } from "./profile/profile.component";
@@ -24,7 +25,7 @@ const routes: Routes = [
   },
   { path: "login", component: LoginComponent },
   { path: "", redirectTo: "/login", pathMatch: "full" },
-  { path: "**", component: LoginComponent }
+  { path: "**", component: PageNotFoundComponent }
 ];
 
 @NgModule({
