@@ -62,47 +62,45 @@ export class TimeSheetComponent implements OnInit {
     });
     this.uploader.onCompleteAll = () => alert("File uploaded");
   }
-  floatingCheck(day){
-    let tempDay =  this.summaries.days.find(x => x.date == day);
-    tempDay.endingTime=null;
-    tempDay.startingTime=null;
-    tempDay.totalHours=0;
-    if(tempDay.holiday===true){
-      tempDay.holiday=false;
+
+  floatingCheck(day) {
+    const tempDay = this.summaries.days.find(x => x.date === day);
+    tempDay.endingTime = null;
+    tempDay.startingTime = null;
+    tempDay.totalHours = 0;
+    if (tempDay.holiday === true) {
+      tempDay.holiday = false;
     }
-    if(tempDay.vacation===true){
-      tempDay.vacation=false;
+    if (tempDay.vacation === true) {
+      tempDay.vacation = false;
     }
   }
 
-  vacationCheck(day){
-    let tempDay =  this.summaries.days.find(x => x.date == day);
-    tempDay.endingTime=null;
-    tempDay.startingTime=null;
-    tempDay.totalHours=0;
-    if(tempDay.holiday===true){
-      tempDay.holiday=false;
+  vacationCheck(day) {
+    const tempDay = this.summaries.days.find(x => x.date === day);
+    tempDay.endingTime = null;
+    tempDay.startingTime = null;
+    tempDay.totalHours = 0;
+    if (tempDay.holiday === true) {
+      tempDay.holiday = false;
     }
-    if(tempDay.floatingDay===true){
-      tempDay.floatingDay=false;
-    }
-  }
-
-  holidayCheck(day){
-    let tempDay =  this.summaries.days.find(x => x.date == day);
-    tempDay.endingTime=null;
-    tempDay.startingTime=null;
-    tempDay.totalHours=0;
-    if(tempDay.vacation===true){
-      tempDay.vacation=false;
-    }
-    if(tempDay.floatingDay===true){
-      tempDay.floatingDay=false;
+    if (tempDay.floatingDay === true) {
+      tempDay.floatingDay = false;
     }
   }
 
-
-
+  holidayCheck(day) {
+    const tempDay = this.summaries.days.find(x => x.date === day);
+    tempDay.endingTime = null;
+    tempDay.startingTime = null;
+    tempDay.totalHours = 0;
+    if (tempDay.vacation === true) {
+      tempDay.vacation = false;
+    }
+    if (tempDay.floatingDay === true) {
+      tempDay.floatingDay = false;
+    }
+  }
 
   onFileChanged(event) {
     this.fileName = event.target.files[0].name;
@@ -153,7 +151,7 @@ export class TimeSheetComponent implements OnInit {
       this.summaries.comment = this.fileName;
       this.summaries.approvalStatus = "Approved";
     }
-    this.summaries.totalHours=this.calBilling();
+    this.summaries.totalHours = this.calBilling();
     window.alert("Saved Changes!");
 
     // this.api.saveWeeklySummary(this.summaries).subscribe(result => {

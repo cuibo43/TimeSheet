@@ -153,7 +153,6 @@
               [value]="day.holiday"
               [disabled]="summaries.approvalStatus === 'Approved'"
               (change)="holidayCheck(day.date)"
-
             />
           </div>
         </td>
@@ -167,7 +166,6 @@
               [value]="day.vacation"
               [disabled]="summaries.approvalStatus === 'Approved'"
               (change)="vacationCheck(day.date)"
-
             />
           </div>
         </td>
@@ -178,10 +176,14 @@
 <div class="row">
   <div class="col-12 p-0">
     <div class="dropdown d-inline-block mr-3">
-      <select class="form-control" [(ngModel)]="isApproved" [disabled]="summaries.approvalStatus==='Approved'">
-      <option [value]="'true'" [selected]="true">Approved Timesheet </option>
-      <option [value]="'false'">Unapproved Timesheet </option>
-    </select>
+      <select
+        class="form-control"
+        [(ngModel)]="isApproved"
+        [disabled]="summaries.approvalStatus === 'Approved'"
+      >
+        <option [value]="'true'" [selected]="true">Approved Timesheet </option>
+        <option [value]="'false'">Unapproved Timesheet </option>
+      </select>
     </div>
     <div class="custom-file d-inline-block col-2">
       <label>{{ fileName }}</label>
