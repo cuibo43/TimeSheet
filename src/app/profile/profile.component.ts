@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild("fileInput", { static: false }) fileInput: ElementRef;
   profile$: Observable<User>;
   profile: User;
-    user: User;
+  user: User;
   uploader: FileUploader;
 
   // isDropOver: boolean;
