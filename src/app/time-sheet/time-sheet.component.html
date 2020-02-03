@@ -173,21 +173,10 @@
 <div class="row">
   <div class="col-12 p-0">
     <div class="dropdown d-inline-block mr-3">
-<<<<<<< HEAD
       <select class="form-control" [(ngModel)]="isApproved" [disabled]="summaries.approvalStatus==='Approved'">
       <option [value]="'true'" [selected]="true">Approved Timesheet </option>
       <option [value]="'false'">Unapproved Timesheet </option>
     </select>
-=======
-      <select
-        class="form-control"
-        [(ngModel)]="isApproved"
-        [disabled]="summaries.approvalStatus === 'Approved'"
-      >
-        <option [value]="'true'">Approved Timesheet </option>
-        <option [value]="'false'">Unapproved Timesheet </option>
-      </select>
->>>>>>> 46a4707227c3751e2924cb1518b3ee23b728a4f7
     </div>
     <div class="custom-file d-inline-block col-2">
       <label>{{ fileName }}</label>
