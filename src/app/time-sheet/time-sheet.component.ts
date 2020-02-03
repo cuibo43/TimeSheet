@@ -5,7 +5,7 @@ import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FileUploader } from "ng2-file-upload";
-import { formatDate } from "@angular/common";
+import { formatDate, formatNumber } from "@angular/common";
 
 @Component({
   selector: "app-time-sheet",
@@ -33,7 +33,7 @@ export class TimeSheetComponent implements OnInit {
     "06:00 PM",
     "07:00 PM"
   ];
-  hourOptions = [...Array(13).keys()];
+  hourOptions = [...Array(24).keys()];
   uploader: FileUploader;
   fileName = "File Name";
   isApproved: string;
@@ -55,6 +55,7 @@ export class TimeSheetComponent implements OnInit {
       .pipe(map(data => data));
     this.summaries$.subscribe(data => {
       this.summaries = data;
+      console.log(this.summaries.days);
     });
     const headers = [{ name: "Accept", value: "application/json" }];
     this.uploader = new FileUploader({

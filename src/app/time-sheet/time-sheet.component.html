@@ -122,17 +122,33 @@
           </select>
         </td>
         <td>
-          <select
-            class="form-control form-control-sm"
-            id="totalHours"
-            [(ngModel)]="day.totalHours"
-            [value]="day.totalHours"
-            [disabled]="summaries.approvalStatus === 'Approved'"
-          >
-            <option *ngFor="let clock of hourOptions" [value]="clock">
-              {{ clock }}
-            </option>
-          </select>
+          <div class="input-group input-group-sm">
+            <input
+              type="text"
+              class="form-control"
+              size="5"
+              [(ngModel)]="day.totalHours"
+              [disabled]="summaries.approvalStatus === 'Approved'"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              ></button>
+              <div class="dropdown-menu">
+                <a
+                  class="dropdown-item"
+                  *ngFor="let clock of hourOptions"
+                  (click)="day.totalHours = clock"
+                >
+                  {{ clock }}
+                </a>
+              </div>
+            </div>
+          </div>
         </td>
         <td>
           <div class="form-check">
