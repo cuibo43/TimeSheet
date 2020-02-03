@@ -60,9 +60,12 @@ export class TimeSheetComponent implements OnInit {
     this.uploader = new FileUploader({url: 'api/summary/files', autoUpload: true, headers: headers});
     this.uploader.onCompleteAll = () => alert('File uploaded');
   }
+<<<<<<< HEAD
   onFileChanged(event) {
     this.fileName= event.target.files[0].name;
     }
+=======
+>>>>>>> David
 
   changeDate() {
     this.endingDay =
@@ -75,6 +78,7 @@ export class TimeSheetComponent implements OnInit {
       queryParams: { endingDay: this.endingDay }
     });
   }
+
   timeFit(startingTime, hour) {
     if (this.timeTransfer(hour) === startingTime) {
       return true;
@@ -82,6 +86,7 @@ export class TimeSheetComponent implements OnInit {
       return false;
     }
   }
+
   timeTransferWithNull(time: string) {
     if (time === "N/A") {
       return null;
@@ -101,6 +106,7 @@ export class TimeSheetComponent implements OnInit {
       return +time.substring(0, 2) + 12 + ":00:00";
     }
   }
+
   save() {
     if(this.isApproved==="true"&&this.fileName!=="File Name"){
       this.summaries.comment=this.fileName;
@@ -112,6 +118,7 @@ export class TimeSheetComponent implements OnInit {
     // });
     this.router.navigate(["/summary"]);
   }
+
   calBilling() {
     let billing = 0;
     for (const day of this.summaries.days) {

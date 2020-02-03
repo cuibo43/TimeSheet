@@ -15,6 +15,7 @@ import { WebService } from "./web.service";
 import { LoginComponent } from "./login/login.component";
 import {FileUploadModule} from "ng2-file-upload";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     SummaryComponent,
     TimeSheetComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     FileUploadModule
   ],
 
-  providers: [WebService,AuthGaurdService,AuthenticationService],
+  providers: [WebService, AuthGaurdService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
