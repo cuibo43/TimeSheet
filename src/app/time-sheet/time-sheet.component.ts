@@ -110,9 +110,9 @@ export class TimeSheetComponent implements OnInit {
       this.summaries.approvalStatus = "Approved";
     }
     console.log(this.summaries);
-    // this.api.saveWeeklySummary(this.summaries).subscribe(result => {
-    //   console.log("good");
-    // });
+    this.api.saveWeeklySummary(this.summaries).subscribe(result => {
+      console.log("good");
+    });
     this.router.navigate(["/summary"]);
   }
 

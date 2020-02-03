@@ -81,6 +81,13 @@ export class WebService {
   }
 
   getUserInfo() {
-    return this.http.get<User>("api/profile/detail");
+    const token = sessionStorage.getItem("token");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: "Bearer " + token
+      })
+    };
+    return this.http.post<User>("api/summary/detail",JSON.stringify(""),
+    httpOptions);
   }
 }

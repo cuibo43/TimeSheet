@@ -1,7 +1,7 @@
 
-<img src="../../assets/yeezy.png"/>
 
 
+<img [src]="'../../assets/'+profile.avatar" width="100" height="100"/>
 <table class="table table-hover table-sm">
   <thead>
     <tr>
@@ -189,6 +189,14 @@
             </div>
           </div>
         </form>
+        <div  class="form-group">
+          <label>{{fileName}}</label>
+          <input style="display: none" type="file" (change)="onFileChanged($event)"
+          ng2FileSelect [uploader]="uploader"  #fileInput>
+      <button type="button" (click)="fileInput.click()"
+      ng2FileSelect [uploader]="uploader"
+      >Select File</button>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
