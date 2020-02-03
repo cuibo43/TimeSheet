@@ -16,6 +16,7 @@ import { LoginComponent } from "./login/login.component";
 import { FileUploadModule } from "ng2-file-upload";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { PhoneNumberPipe } from './phone-number.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
     TimeSheetComponent,
     ProfileComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PhoneNumberPipe
   ],
   imports: [
     BrowserModule,

@@ -18,7 +18,7 @@
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">User Phone Number</td>
-      <td style="text-align: left;">{{ profile.phoneNumber }}</td>
+      <td style="text-align: left;">{{ profile.phoneNumber | phoneNumber}}</td>
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">User Email Address</td>
@@ -33,26 +33,26 @@
     <tr>
       <td scope="row" style="text-align: left;">Emergency Contact 1</td>
       <td style="text-align: left;">
-        {{ profile.contact1FirstName }} {{ profile.contact1LastName }}
+        {{ profile.contact1FirstName }}
       </td>
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">
         Emergency Contact 1 Phone Number
       </td>
-      <td style="text-align: left;">{{ profile.contact1PhoneNumber }}</td>
+      <td style="text-align: left;">{{ profile.contact1PhoneNumber | phoneNumber }}</td>
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">Emergency Contact 2</td>
       <td style="text-align: left;">
-        {{ profile.contact2FirstName }} {{ profile.contact2LastName }}
+        {{ profile.contact2FirstName }}
       </td>
     </tr>
     <tr>
       <td scope="row" style="text-align: left;">
         Emergency Contact 2 Phone Number
       </td>
-      <td style="text-align: left;">{{ profile.contact2PhoneNumber }}</td>
+      <td style="text-align: left;">{{ profile.contact2PhoneNumber | phoneNumber }}</td>
     </tr>
   </tbody>
 </table>
@@ -120,10 +120,9 @@
             <input
               type="phoneNumber"
               class="form-control"
-
               [(ngModel)]="profile.phoneNumber"
               id="phoneNumber"
-              placeholder="{{ profile.phoneNumber }}"
+              placeholder="{{ profile.phoneNumber}}"
               formControlName="phoneNumber"
             />
             <div

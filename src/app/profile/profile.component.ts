@@ -60,10 +60,10 @@ export class ProfileComponent implements OnInit {
 
   save() {
     this.profile.avatar = this.fileName;
-    console.log(this.profile);
     this.api.saveUserInfo(this.profile).subscribe(result => {
       console.log("good");
     });
+    window.alert("Saved Changes!");
   }
 
   // onSubmit() {
