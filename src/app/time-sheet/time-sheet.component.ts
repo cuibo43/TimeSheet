@@ -134,9 +134,6 @@ export class TimeSheetComponent implements OnInit {
     }
   }
 
-
-
-
   onFileChanged(event) {
     this.fileName = event.target.files[0].name;
   }
@@ -186,7 +183,7 @@ export class TimeSheetComponent implements OnInit {
       this.summaries.comment = this.fileName;
       this.summaries.approvalStatus = "Approved";
     }
-    this.summaries.totalHours=this.calBilling();
+    this.summaries.totalHours = this.calBilling();
     window.alert("Saved Changes!");
     console.log(this.summaries);
     // this.api.saveWeeklySummary(this.summaries).subscribe(result => {
