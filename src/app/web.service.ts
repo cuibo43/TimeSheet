@@ -87,12 +87,29 @@ export class WebService {
     const token = sessionStorage.getItem("token");
     const httpOptions = {
       headers: new HttpHeaders({
+        "Content-Type": "application/json; charset=UTF-8",
+
         Authorization: "Bearer " + token
       })
     };
     return this.http.post<User>(
       "api/summary/detail",
-      JSON.stringify(""),
+      JSON.stringify(User),
+      httpOptions
+    );
+  }
+
+  saveUserInfo(User) {
+    const token = sessionStorage.getItem("token");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json; charset=UTF-8",
+        Authorization: "Bearer " + token
+      })
+    };
+    return this.http.post(
+      "api/summary/updateDetail",
+      JSON.stringify(User),
       httpOptions
     );
   }

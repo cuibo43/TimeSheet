@@ -20,8 +20,8 @@ const routes: Routes = [
   },
   {
     path: "profile",
-    component: ProfileComponent,
-    canActivate: [AuthGaurdService]
+    component: ProfileComponent
+    // canActivate: [AuthGaurdService]
   },
   { path: "login", component: LoginComponent },
   { path: "", redirectTo: "/login", pathMatch: "full" },
