@@ -108,7 +108,6 @@ export class WebService {
     return this.http.post(
       "api/summary/updateDetail",
       JSON.stringify(User),
-
       httpOptions
     );
   }
