@@ -1,12 +1,12 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { last, map } from "rxjs/operators";
 import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FileUploader } from "ng2-file-upload";
+import { formatDate } from "@angular/common";
 import { YearlyVacation } from "./../summary/YearlyVacation";
-
 
 @Component({
   selector: "app-time-sheet",
@@ -19,6 +19,7 @@ export class TimeSheetComponent implements OnInit {
   endDate: { year: number; month: number; day: number };
   summaries$: Observable<WeeklySummary>;
   summaries: WeeklySummary;
+  preSummaries$: Observable<WeeklySummary>;
   timeHardCode: string[] = [
     "08:00 AM",
     "09:00 AM",
@@ -33,13 +34,12 @@ export class TimeSheetComponent implements OnInit {
     "06:00 PM",
     "07:00 PM"
   ];
-  hourOptions = [...Array(13).keys()];
+  hourOptions = [...Array(24).keys()];
   uploader: FileUploader;
   fileName = "File Name";
   isApproved: string;
   vacationLeft$: Observable<YearlyVacation>;
   vacationLeft: YearlyVacation;
-
 
   constructor(
     private api: WebService,
@@ -56,12 +56,19 @@ export class TimeSheetComponent implements OnInit {
     this.summaries$ = this.api
       .getWeeklySummariesByUseNameAndDate(this.endingDay)
       .pipe(map(data => data));
+
     this.summaries$.subscribe(data => {
       this.summaries = data;
       this.vacationLeft$ = this.api
+<<<<<<< HEAD
       .getVacationLeft(data)
       .pipe(map( data1 => data1));
       this.vacationLeft$.subscribe( data2 => {
+=======
+        .getVacationLeft(data)
+        .pipe(map(data2 => data2));
+      this.vacationLeft$.subscribe(data2 => {
+>>>>>>> release
         this.vacationLeft = data2;
       });
     });
@@ -74,63 +81,58 @@ export class TimeSheetComponent implements OnInit {
     this.uploader.onCompleteAll = () => alert("File uploaded");
   }
 
-  floatingCheck(day){
-    const tempDay =  this.summaries.days.find(x => x.date === day);
-    if (tempDay.floatingDay===true){
-        this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft - 1;
-        tempDay.endingTime=null;
-        tempDay.startingTime=null;
-        tempDay.totalHours=0;
-        if(tempDay.holiday===true){
-          tempDay.holiday=false;
-        }
-        if(tempDay.vacation===true){
-          tempDay.vacation=false;
-          this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft + 1;
-        }
+  floatingCheck(day) {
+    const tempDay = this.summaries.days.find(x => x.date === day);
+    if (tempDay.floatingDay) {
+      this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft - 1;
+      tempDay.endingTime = null;
+      tempDay.startingTime = null;
+      tempDay.totalHours = 0;
+      if (tempDay.holiday === true) {
+        tempDay.holiday = false;
+      }
+      if (tempDay.vacation === true) {
+        tempDay.vacation = false;
+        this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft + 1;
+      }
       // }
-    }
-    else{
+    } else {
       this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft + 1;
     }
   }
 
-  vacationCheck(day){
-    let tempDay =  this.summaries.days.find(x => x.date == day);
-    if (tempDay.vacation===true){
-        this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft - 1;
-        tempDay.endingTime=null;
-        tempDay.startingTime=null;
-        tempDay.totalHours=0;
-        if(tempDay.holiday===true){
-          tempDay.holiday=false;
-        }
-        if(tempDay.floatingDay===true){
-          tempDay.floatingDay=false;
-          this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft + 1;
-        }
-      // }
-    }
-    else{
+  vacationCheck(day) {
+    const tempDay = this.summaries.days.find(x => x.date === day);
+    if (tempDay.vacation) {
+      this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft - 1;
+      tempDay.endingTime = null;
+      tempDay.startingTime = null;
+      tempDay.totalHours = 0;
+      if (tempDay.holiday === true) {
+        tempDay.holiday = false;
+      }
+      if (tempDay.floatingDay === true) {
+        tempDay.floatingDay = false;
+        this.vacationLeft.floatingDayLeft =
+          this.vacationLeft.floatingDayLeft + 1;
+      }
+    } else {
       this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft + 1;
-
     }
   }
 
-  holidayCheck(day){
-    let tempDay =  this.summaries.days.find(x => x.date == day);
-    tempDay.endingTime=null;
-    tempDay.startingTime=null;
-    tempDay.totalHours=0;
-    if(tempDay.vacation===true){
-      tempDay.vacation=false;
+  holidayCheck(day) {
+    const tempDay = this.summaries.days.find(x => x.date === day);
+    tempDay.endingTime = null;
+    tempDay.startingTime = null;
+    tempDay.totalHours = 0;
+    if (tempDay.vacation) {
+      tempDay.vacation = false;
       this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft + 1;
-
     }
-    if(tempDay.floatingDay===true){
-      tempDay.floatingDay=false;
+    if (tempDay.floatingDay) {
+      tempDay.floatingDay = false;
       this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft + 1;
-
     }
   }
 
@@ -191,21 +193,21 @@ export class TimeSheetComponent implements OnInit {
     // });
   }
 
-  calBilling() {
-    let billing = 0;
+  calBilling(): number {
+    let billing = 0.0;
     for (const day of this.summaries.days) {
-      billing = billing + day.totalHours;
+      billing += +day.totalHours;
     }
     return billing;
   }
 
-  calCompensated() {
+  calCompensated(): number {
     let compensated = 0;
     for (const day of this.summaries.days) {
       if (day.floatingDay) {
-        compensated = compensated + 8;
+        compensated += 8;
       }
-      compensated = compensated + day.totalHours;
+      compensated += +day.totalHours;
     }
     return compensated;
   }
@@ -216,5 +218,32 @@ export class TimeSheetComponent implements OnInit {
       s = "0" + s;
     }
     return s;
+  }
+
+  onSetDefaultPressed() {
+    const today = new Date();
+    const lastWeek = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDay() - 7
+    );
+
+    this.preSummaries$ = this.api
+      .getWeeklySummariesByUseNameAndDate(
+        formatDate(lastWeek, "yyyy-MM-dd", "en-US")
+      )
+      .pipe(map(data => data));
+
+    // overriding the current summary
+    this.preSummaries$.subscribe(data => {
+      this.summaries.days.forEach((day, index) => {
+        day.startingTime = data.days[index].startingTime;
+        day.endingTime = data.days[index].endingTime;
+        day.totalHours = data.days[index].totalHours;
+        day.floatingDay = false;
+        day.vacation = false;
+        day.holiday = false;
+      });
+    });
   }
 }

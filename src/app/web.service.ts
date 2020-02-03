@@ -11,6 +11,7 @@ import { User } from "./model/user";
 })
 export class WebService {
   constructor(private http: HttpClient) {}
+
   authenticate(username, password) {
     const ui: UserInformation = new UserInformation();
     ui.username = username;
@@ -22,6 +23,7 @@ export class WebService {
     };
     return this.http.post("api/auth/signin", JSON.stringify(ui), httpOptions);
   }
+
   getVacationLeft(summary) {
     const token = sessionStorage.getItem("token");
     const httpOptions = {
@@ -36,6 +38,7 @@ export class WebService {
       httpOptions
     );
   }
+
   saveWeeklySummary(WeeklySummary) {
     const token = sessionStorage.getItem("token");
     const httpOptions = {
@@ -84,12 +87,29 @@ export class WebService {
     const token = sessionStorage.getItem("token");
     const httpOptions = {
       headers: new HttpHeaders({
+        "Content-Type": "application/json; charset=UTF-8",
+
         Authorization: "Bearer " + token
       })
     };
     return this.http.post<User>(
-      "api/summary/detail",
-      JSON.stringify(""),
+      "api/profile/detail",
+      JSON.stringify(User),
+      httpOptions
+    );
+  }
+
+  saveUserInfo(User) {
+    const token = sessionStorage.getItem("token");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json; charset=UTF-8",
+        Authorization: "Bearer " + token
+      })
+    };
+    return this.http.post(
+      "api/profile/updateDetail",
+      JSON.stringify(User),
       httpOptions
     );
   }

@@ -52,7 +52,11 @@
 </form>
 <div class="row mt-3 mb-3">
   <div class="col-12 p-0">
-    <button type="button" class="btn btn-outline-primary float-right">
+    <button
+      type="button"
+      class="btn btn-outline-primary float-right"
+      (click)="onSetDefaultPressed()"
+    >
       Set Default
       <i
         class="fas fa-info-circle"
@@ -118,17 +122,33 @@
           </select>
         </td>
         <td>
-          <select
-            class="form-control form-control-sm"
-            id="totalHours"
-            [(ngModel)]="day.totalHours"
-            [value]="day.totalHours"
-            [disabled]="summaries.approvalStatus === 'Approved'"
-          >
-            <option *ngFor="let clock of hourOptions" [value]="clock">
-              {{ clock }}
-            </option>
-          </select>
+          <div class="input-group input-group-sm">
+            <input
+              type="text"
+              class="form-control"
+              size="5"
+              [(ngModel)]="day.totalHours"
+              [disabled]="summaries.approvalStatus === 'Approved'"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              ></button>
+              <div class="dropdown-menu">
+                <a
+                  class="dropdown-item"
+                  *ngFor="let clock of hourOptions"
+                  (click)="day.totalHours = clock"
+                >
+                  {{ clock }}
+                </a>
+              </div>
+            </div>
+          </div>
         </td>
         <td>
           <div class="form-check">
@@ -137,8 +157,11 @@
               class="form-check-input"
               [(ngModel)]="day.floatingDay"
               (ngModelChange)="floatingCheck(day.date)"
-              [disabled]="summaries.approvalStatus === 'Approved'||
-              (vacationLeft.floatingDayLeft===0&&day.floatingDay===false)"
+              [disabled]="
+                summaries.approvalStatus === 'Approved' ||
+                (vacationLeft.floatingDayLeft === 0 &&
+                  day.floatingDay === false)
+              "
             />
           </div>
         </td>
@@ -149,11 +172,7 @@
               class="form-check-input"
               [(ngModel)]="day.holiday"
               [disabled]="summaries.approvalStatus === 'Approved'"
-<<<<<<< HEAD
               (ngModelChange)="holidayCheck(day.date)"
-=======
-              (change)="holidayCheck(day.date)"
->>>>>>> 8e1e0b9143e1da2d51b626b850ad676f0d0abcbc
             />
           </div>
         </td>
@@ -163,8 +182,10 @@
               type="checkbox"
               class="form-check-input"
               [(ngModel)]="day.vacation"
-              [disabled]="summaries.approvalStatus === 'Approved'||
-              (vacationLeft.vacationLeft===0&&day.vacation===false)"
+              [disabled]="
+                summaries.approvalStatus === 'Approved' ||
+                (vacationLeft.vacationLeft === 0 && day.vacation === false)
+              "
               (ngModelChange)="vacationCheck(day.date)"
             />
           </div>
@@ -176,11 +197,14 @@
 <div class="row">
   <div class="col-12 p-0">
     <div class="dropdown d-inline-block mr-3">
-      <select class="form-control" [(ngModel)]="isApproved"
-      [disabled]="summaries.approvalStatus==='Approved'">
-      <option [value]="'true'" [selected]="true">Approved Timesheet </option>
-      <option [value]="'false'">Unapproved Timesheet </option>
-    </select>
+      <select
+        class="form-control"
+        [(ngModel)]="isApproved"
+        [disabled]="summaries.approvalStatus === 'Approved'"
+      >
+        <option [value]="'true'" [selected]="true">Approved Timesheet </option>
+        <option [value]="'false'">Unapproved Timesheet </option>
+      </select>
     </div>
     <div class="custom-file d-inline-block col-2">
       <label>{{ fileName }}</label>
