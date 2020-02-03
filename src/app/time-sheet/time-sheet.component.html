@@ -136,10 +136,9 @@
               type="checkbox"
               class="form-check-input"
               [(ngModel)]="day.floatingDay"
-              [checked]="day.floatingDay"
-              [value]="day.floatingDay"
-              [disabled]="summaries.approvalStatus === 'Approved'"
-              (change)="floatingCheck(day.date)"
+              (ngModelChange)="floatingCheck(day.date)"
+              [disabled]="summaries.approvalStatus === 'Approved'||
+              (vacationLeft.floatingDayLeft===0&&day.floatingDay===false)"
             />
           </div>
         </td>
@@ -149,11 +148,8 @@
               type="checkbox"
               class="form-check-input"
               [(ngModel)]="day.holiday"
-              [checked]="day.holiday"
-              [value]="day.holiday"
               [disabled]="summaries.approvalStatus === 'Approved'"
-              (change)="holidayCheck(day.date)"
-
+              (ngModelChange)="holidayCheck(day.date)"
             />
           </div>
         </td>
@@ -163,11 +159,9 @@
               type="checkbox"
               class="form-check-input"
               [(ngModel)]="day.vacation"
-              [checked]="day.vacation"
-              [value]="day.vacation"
-              [disabled]="summaries.approvalStatus === 'Approved'"
-              (change)="vacationCheck(day.date)"
-
+              [disabled]="summaries.approvalStatus === 'Approved'||
+              (vacationLeft.vacationLeft===0&&day.vacation===false)"
+              (ngModelChange)="vacationCheck(day.date)"
             />
           </div>
         </td>
@@ -178,7 +172,8 @@
 <div class="row">
   <div class="col-12 p-0">
     <div class="dropdown d-inline-block mr-3">
-      <select class="form-control" [(ngModel)]="isApproved" [disabled]="summaries.approvalStatus==='Approved'">
+      <select class="form-control" [(ngModel)]="isApproved"
+      [disabled]="summaries.approvalStatus==='Approved'">
       <option [value]="'true'" [selected]="true">Approved Timesheet </option>
       <option [value]="'false'">Unapproved Timesheet </option>
     </select>

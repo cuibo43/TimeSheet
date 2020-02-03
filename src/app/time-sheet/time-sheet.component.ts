@@ -5,6 +5,8 @@ import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FileUploader } from "ng2-file-upload";
+import { YearlyVacation } from "./../summary/YearlyVacation";
+
 
 @Component({
   selector: "app-time-sheet",
@@ -35,6 +37,9 @@ export class TimeSheetComponent implements OnInit {
   uploader: FileUploader;
   fileName = "File Name";
   isApproved: string;
+  vacationLeft$: Observable<YearlyVacation>;
+  vacationLeft: YearlyVacation;
+
 
   constructor(
     private api: WebService,
@@ -53,6 +58,12 @@ export class TimeSheetComponent implements OnInit {
       .pipe(map(data => data));
     this.summaries$.subscribe(data => {
       this.summaries = data;
+      this.vacationLeft$ = this.api
+      .getVacationLeft(data)
+      .pipe(map( data => data));
+      this.vacationLeft$.subscribe( data => {
+        this.vacationLeft = data;
+      });
     });
     const headers = [{ name: "Accept", value: "application/json" }];
     this.uploader = new FileUploader({
@@ -62,29 +73,47 @@ export class TimeSheetComponent implements OnInit {
     });
     this.uploader.onCompleteAll = () => alert("File uploaded");
   }
+
   floatingCheck(day){
-    let tempDay =  this.summaries.days.find(x => x.date == day);
-    tempDay.endingTime=null;
-    tempDay.startingTime=null;
-    tempDay.totalHours=0;
-    if(tempDay.holiday===true){
-      tempDay.holiday=false;
+    const tempDay =  this.summaries.days.find(x => x.date === day);
+    if (tempDay.floatingDay===true){
+        this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft - 1;
+        tempDay.endingTime=null;
+        tempDay.startingTime=null;
+        tempDay.totalHours=0;
+        if(tempDay.holiday===true){
+          tempDay.holiday=false;
+        }
+        if(tempDay.vacation===true){
+          tempDay.vacation=false;
+          this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft + 1;
+        }
+      // }
     }
-    if(tempDay.vacation===true){
-      tempDay.vacation=false;
+    else{
+      this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft + 1;
     }
   }
 
   vacationCheck(day){
     let tempDay =  this.summaries.days.find(x => x.date == day);
-    tempDay.endingTime=null;
-    tempDay.startingTime=null;
-    tempDay.totalHours=0;
-    if(tempDay.holiday===true){
-      tempDay.holiday=false;
+    if (tempDay.vacation===true){
+        this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft - 1;
+        tempDay.endingTime=null;
+        tempDay.startingTime=null;
+        tempDay.totalHours=0;
+        if(tempDay.holiday===true){
+          tempDay.holiday=false;
+        }
+        if(tempDay.floatingDay===true){
+          tempDay.floatingDay=false;
+          this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft + 1;
+        }
+      // }
     }
-    if(tempDay.floatingDay===true){
-      tempDay.floatingDay=false;
+    else{
+      this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft + 1;
+
     }
   }
 
@@ -95,9 +124,13 @@ export class TimeSheetComponent implements OnInit {
     tempDay.totalHours=0;
     if(tempDay.vacation===true){
       tempDay.vacation=false;
+      this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft + 1;
+
     }
     if(tempDay.floatingDay===true){
       tempDay.floatingDay=false;
+      this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft + 1;
+
     }
   }
 
@@ -155,7 +188,7 @@ export class TimeSheetComponent implements OnInit {
     }
     this.summaries.totalHours=this.calBilling();
     window.alert("Saved Changes!");
-
+    console.log(this.summaries);
     // this.api.saveWeeklySummary(this.summaries).subscribe(result => {
     //   console.log("good");
     // });
