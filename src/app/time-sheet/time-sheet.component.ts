@@ -1,10 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { last, map } from "rxjs/operators";
 import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FileUploader } from "ng2-file-upload";
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: "app-time-sheet",
@@ -17,6 +18,7 @@ export class TimeSheetComponent implements OnInit {
   endDate: { year: number; month: number; day: number };
   summaries$: Observable<WeeklySummary>;
   summaries: WeeklySummary;
+  preSummaries$: Observable<WeeklySummary>;
   timeHardCode: string[] = [
     "08:00 AM",
     "09:00 AM",
@@ -184,5 +186,32 @@ export class TimeSheetComponent implements OnInit {
       s = "0" + s;
     }
     return s;
+  }
+
+  onSetDefaultPressed() {
+    const today = new Date();
+    const lastWeek = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDay() - 7
+    );
+
+    this.preSummaries$ = this.api
+      .getWeeklySummariesByUseNameAndDate(
+        formatDate(lastWeek, "yyyy-MM-dd", "en-US")
+      )
+      .pipe(map(data => data));
+
+    // overriding the current summary
+    this.preSummaries$.subscribe(data => {
+      this.summaries.days.forEach((day, index) => {
+        day.startingTime = data.days[index].startingTime;
+        day.endingTime = data.days[index].endingTime;
+        day.totalHours = data.days[index].totalHours;
+        day.floatingDay = false;
+        day.vacation = false;
+        day.holiday = false;
+      });
+    });
   }
 }
