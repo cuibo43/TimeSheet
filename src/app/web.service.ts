@@ -93,7 +93,7 @@ export class WebService {
       })
     };
     return this.http.post<User>(
-      "api/profile/detail",
+      "api/profileComposite/detail",
       JSON.stringify(User),
       httpOptions
     );
@@ -108,7 +108,7 @@ export class WebService {
       })
     };
     return this.http.post(
-      "api/profile/updateDetail",
+      "api/profileComposite/updateDetail",
       JSON.stringify(User),
       httpOptions
     );
