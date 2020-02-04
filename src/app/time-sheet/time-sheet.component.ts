@@ -60,15 +60,9 @@ export class TimeSheetComponent implements OnInit {
     this.summaries$.subscribe(data => {
       this.summaries = data;
       this.vacationLeft$ = this.api
-<<<<<<< HEAD
       .getVacationLeft(data)
       .pipe(map( data1 => data1));
       this.vacationLeft$.subscribe( data2 => {
-=======
-        .getVacationLeft(data)
-        .pipe(map(data2 => data2));
-      this.vacationLeft$.subscribe(data2 => {
->>>>>>> release
         this.vacationLeft = data2;
       });
     });
@@ -95,7 +89,6 @@ export class TimeSheetComponent implements OnInit {
         tempDay.vacation = false;
         this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft + 1;
       }
-      // }
     } else {
       this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft + 1;
     }
@@ -187,10 +180,9 @@ export class TimeSheetComponent implements OnInit {
     }
     this.summaries.totalHours = this.calBilling();
     window.alert("Saved Changes!");
-    console.log(this.summaries);
-    // this.api.saveWeeklySummary(this.summaries).subscribe(result => {
-    //   console.log("good");
-    // });
+    this.api.saveWeeklySummary(this.summaries).subscribe(result => {
+      console.log("good");
+    });
   }
 
   calBilling(): number {

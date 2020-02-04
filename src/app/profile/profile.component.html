@@ -4,13 +4,8 @@
   height="100"
   class="img-thumbnail"
 />
+
 <table class="table table-hover table-sm">
-  <!-- <thead>
-    <tr>
-      <th style="text-align: left;">Field</th>
-      <th style="text-align: left;">Content</th>
-    </tr>
-  </thead> -->
   <tbody>
     <tr>
       <td scope="row" style="text-align: left;">User Name</td>
@@ -62,6 +57,8 @@
   class="btn btn-primary btn-lg"
   data-toggle="modal"
   data-target="#newUserModal"
+  data-backdrop="static"
+  data-keyboard="false"
 >
   Edit
 </button>
@@ -127,15 +124,6 @@
           </div>
           <div class="form-group">
             <label for="address"></label>
-            <!-- <input
-              type="address"
-              class="form-control"
-              [(ngModel)]="profile.address"
-              id="address"
-              rows="3"
-              [placeholder]="'(Home Address)' + profile.address"
-              formControlName="address"
-            /> -->
             <textarea
               type="address"
               class="form-control"
@@ -217,7 +205,7 @@
             </div>
           </div>
         </form>
-        <div class="form-group">
+        <div>
           <label>{{ fileName }}</label>
           <input
             style="display: none"

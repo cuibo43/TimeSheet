@@ -33,13 +33,13 @@ export class WebService {
       })
     };
     return this.http.post<YearlyVacation>(
-      "api/summary/vacationLeft",
+      "api/smartComposite/vacationLeft",
       JSON.stringify(summary),
       httpOptions
     );
   }
 
-  saveWeeklySummary(WeeklySummary) {
+  saveWeeklySummary( WeeklySummary) {
     const token = sessionStorage.getItem("token");
     const httpOptions = {
       headers: new HttpHeaders({
@@ -48,7 +48,7 @@ export class WebService {
       })
     };
     return this.http.post(
-      "api/summary/updateSummary",
+      "api/smartComposite/updateSummary",
       JSON.stringify(WeeklySummary),
       httpOptions
     );
@@ -62,7 +62,7 @@ export class WebService {
       })
     };
     return this.http.post<WeeklySummary[]>(
-      "api/summary/all",
+      "api/smartComposite/all",
       JSON.stringify("good"),
       httpOptions
     );
@@ -77,7 +77,7 @@ export class WebService {
       })
     };
     return this.http.post<WeeklySummary>(
-      "api/summary/getSummary",
+      "api/smartComposite/getSummary",
       JSON.stringify(date),
       httpOptions
     );
