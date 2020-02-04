@@ -39,7 +39,7 @@ export class WebService {
     );
   }
 
-  saveWeeklySummary( WeeklySummary) {
+  saveWeeklySummary(WeeklySummary) {
     const token = sessionStorage.getItem("token");
     const httpOptions = {
       headers: new HttpHeaders({

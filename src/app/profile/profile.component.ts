@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild} from "@angular/core";
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { User } from "../model/user";
 import { FormBuilder, Validators } from "@angular/forms";
 import { WebService } from "../web.service";
@@ -62,5 +62,4 @@ export class ProfileComponent implements OnInit {
       console.log("good");
     });
   }
-
 }
