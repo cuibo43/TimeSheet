@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+import { Component, OnInit, ElementRef, ViewChild} from "@angular/core";
 import { User } from "../model/user";
 import { FormBuilder, Validators } from "@angular/forms";
 import { WebService } from "../web.service";
@@ -17,8 +17,6 @@ export class ProfileComponent implements OnInit {
   profile: User;
   user: User;
   uploader: FileUploader;
-
-  // isDropOver: boolean;
   fileName = "File Name";
   form;
   constructor(private api: WebService, formBuilder: FormBuilder) {
@@ -48,7 +46,7 @@ export class ProfileComponent implements OnInit {
     });
     const headers = [{ name: "Accept", value: "application/json" }];
     this.uploader = new FileUploader({
-      url: "api/summary/pic",
+      url: "api/summary/files",
       autoUpload: true,
       headers: headers
     });
@@ -66,33 +64,4 @@ export class ProfileComponent implements OnInit {
     window.alert("Saved Changes!");
   }
 
-  // onSubmit() {
-  //   const usr = new User();
-  //   usr.phoneNumber = this.form.get("phoneNumber").value;
-  //   usr.email = this.form.get("email").value;
-  //   usr.address = "address";
-  //   usr.contact1FirstName = this.form.get("fullName1").value;
-  //   usr.contact1PhoneNumber = this.form.get("phoneNumber1").value;
-  //   usr.contact2FirstName = this.form.get("fullName2").value;
-  //   usr.contact2PhoneNumber = this.form.get("phoneNumber2").value;
-
-  //   this.potentialCandidateService
-  //     .getPositionIdByName(this.form.get("position").value)
-  //     .subscribe(data => {
-  //       usr.positionId = data;
-  //       this.potentialCandidateService
-  //         .getEmailTemplateIdByName(this.form.get("emailTemplate").value)
-  //         .subscribe(data => {
-  //           usr.emailTemplateId = data;
-  //           this.potentialCandidateService
-  //             .addNewPotentialCandidate(pc)
-  //             .subscribe(data => {
-  //               console.log(data);
-  //               if (data.responseMessage.statusCode === 200) {
-  //                 //TODO: Make the modal view disappear
-  //               }
-  //             });
-  //         });
-  //     });
-  // }
 }

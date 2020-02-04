@@ -1,70 +1,67 @@
-<img
-  [src]="'../../assets/' + profile.avatar"
-  width="150"
-  height="150"
-  class="img-thumbnail"
-/>
+<div class="mb-3">
+  <img
+    [src]="'../../assets/' + profile.avatar"
+    width="100"
+    height="100"
+    class="img-thumbnail"
+  />
+</div>
 <table class="table table-hover table-sm">
-  <!-- <thead>
-    <tr>
-      <th style="text-align: left;">Field</th>
-      <th style="text-align: left;">Content</th>
-    </tr>
-  </thead> -->
   <tbody>
     <tr>
-      <td scope="row" style="text-align: left;">User Name</td>
-      <td style="text-align: left;">{{ profile.username }}</td>
+      <td scope="row">User Name</td>
+      <td>{{ profile.username }}</td>
     </tr>
     <tr>
-      <td scope="row" style="text-align: left;">User Phone Number</td>
-      <td style="text-align: left;">{{ profile.phoneNumber | phoneNumber}}</td>
+      <td scope="row">User Phone Number</td>
+      <td>{{ profile.phoneNumber }}</td>
     </tr>
     <tr>
-      <td scope="row" style="text-align: left;">User Email Address</td>
-      <td style="text-align: left;">{{ profile.email }}</td>
+      <td scope="row">User Email Address</td>
+      <td>{{ profile.email }}</td>
     </tr>
     <tr>
-      <td scope="row" style="text-align: left;">User Home Address</td>
-      <td style="text-align: left;">
+      <td scope="row">User Home Address</td>
+      <td>
         {{ profile.address }}
       </td>
     </tr>
     <tr>
-      <td scope="row" style="text-align: left;">Emergency Contact 1</td>
-      <td style="text-align: left;">
-        {{ profile.contact1FirstName }}
-      </td>
+      <td scope="row">Emergency Contact 1</td>
+      <td>{{ profile.contact1FirstName }} {{ profile.contact1LastName }}</td>
     </tr>
     <tr>
-      <td scope="row" style="text-align: left;">
+      <td scope="row">
         Emergency Contact 1 Phone Number
       </td>
-      <td style="text-align: left;">{{ profile.contact1PhoneNumber | phoneNumber }}</td>
+
+      <td>{{ profile.contact1PhoneNumber }}</td>
     </tr>
     <tr>
-      <td scope="row" style="text-align: left;">Emergency Contact 2</td>
-      <td style="text-align: left;">
-        {{ profile.contact2FirstName }}
-      </td>
+      <td scope="row">Emergency Contact 2</td>
+      <td>{{ profile.contact2FirstName }}</td>
     </tr>
     <tr>
-      <td scope="row" style="text-align: left;">
+      <td scope="row">
         Emergency Contact 2 Phone Number
       </td>
-      <td style="text-align: left;">{{ profile.contact2PhoneNumber | phoneNumber }}</td>
+
+      <td>{{ profile.contact2PhoneNumber }}</td>
     </tr>
   </tbody>
 </table>
 
 <button
   type="button"
-  class="btn btn-primary btn-lg"
+  class="btn btn-primary"
   data-toggle="modal"
   data-target="#newUserModal"
+  data-backdrop="static"
+  data-keyboard="false"
 >
   Edit
 </button>
+
 <div
   class="modal fade"
   id="newUserModal"
@@ -92,7 +89,11 @@
           />
           <div class="form-group">
             <!-- <label>User avatar:&nbsp;&nbsp;&nbsp;&nbsp;</label> -->
-            <label>&nbsp;&nbsp;&nbsp;&nbsp;{{ fileName }}&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <label
+              >&nbsp;&nbsp;&nbsp;&nbsp;{{
+                fileName
+              }}&nbsp;&nbsp;&nbsp;&nbsp;</label
+            >
             <input
               style="display: none"
               type="file"
@@ -101,28 +102,25 @@
               [uploader]="uploader"
               #fileInput
             />
-            <!-- <button
+
+            <button
               type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
               (click)="fileInput.click()"
               ng2FileSelect
               [uploader]="uploader"
             >
               Select File
-            </button> -->
-            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="fileInput.click()"
-            ng2FileSelect
-            [uploader]="uploader">
-              Select File
             </button>
           </div>
           <div class="form-group">
-            <label for="phoneNumber"></label>
             <input
               type="phoneNumber"
               class="form-control"
               [(ngModel)]="profile.phoneNumber"
               id="phoneNumber"
-              placeholder="{{ profile.phoneNumber}}"
+              placeholder="{{ profile.phoneNumber }}"
               formControlName="phoneNumber"
             />
             <div
@@ -138,7 +136,6 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="email"></label>
             <input
               type="email"
               class="form-control"
@@ -157,16 +154,6 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="address"></label>
-            <!-- <input
-              type="address"
-              class="form-control"
-              [(ngModel)]="profile.address"
-              id="address"
-              rows="3"
-              [placeholder]="'(Home Address)' + profile.address"
-              formControlName="address"
-            /> -->
             <textarea
               type="address"
               class="form-control"
@@ -191,7 +178,6 @@
             />
           </div>
           <div class="form-group">
-            <label for="phoneNumber1"></label>
             <input
               type="phoneNumber1"
               class="form-control"
@@ -226,7 +212,6 @@
             />
           </div>
           <div class="form-group">
-            <label for="phoneNumber2"></label>
             <input
               type="phoneNumber2"
               class="form-control"
@@ -248,7 +233,6 @@
             </div>
           </div>
         </form>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
