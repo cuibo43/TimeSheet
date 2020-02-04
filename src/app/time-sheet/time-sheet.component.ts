@@ -37,7 +37,7 @@ export class TimeSheetComponent implements OnInit {
   hourOptions = [...Array(24).keys()];
   uploader: FileUploader;
   fileName = "File Name";
-  isApproved: string;
+  isApproved: string ="true";
   vacationLeft$: Observable<YearlyVacation>;
   vacationLeft: YearlyVacation;
 
@@ -177,6 +177,7 @@ export class TimeSheetComponent implements OnInit {
     if (this.isApproved === "true" && this.fileName !== "File Name") {
       this.summaries.comment = this.fileName;
       this.summaries.approvalStatus = "Approved";
+      this.summaries.submissionStatus="Complete";
     }
     this.summaries.totalHours = this.calBilling();
     window.alert("Saved Changes!");
