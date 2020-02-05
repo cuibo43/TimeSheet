@@ -37,7 +37,7 @@ export class TimeSheetComponent implements OnInit {
   hourOptions = [...Array(24).keys()];
   uploader: FileUploader;
   fileName = "File Name";
-  isApproved: string ="true";
+  isApproved: string = "true";
   vacationLeft$: Observable<YearlyVacation>;
   vacationLeft: YearlyVacation;
 
@@ -60,9 +60,9 @@ export class TimeSheetComponent implements OnInit {
     this.summaries$.subscribe(data => {
       this.summaries = data;
       this.vacationLeft$ = this.api
-      .getVacationLeft(data)
-      .pipe(map( data1 => data1));
-      this.vacationLeft$.subscribe( data2 => {
+        .getVacationLeft(data)
+        .pipe(map(data1 => data1));
+      this.vacationLeft$.subscribe(data2 => {
         this.vacationLeft = data2;
       });
     });
@@ -177,7 +177,7 @@ export class TimeSheetComponent implements OnInit {
     if (this.isApproved === "true" && this.fileName !== "File Name") {
       this.summaries.comment = this.fileName;
       this.summaries.approvalStatus = "Approved";
-      this.summaries.submissionStatus="Complete";
+      this.summaries.submissionStatus = "Complete";
     }
     else{
       this.summaries.submissionStatus="Incomplete";
