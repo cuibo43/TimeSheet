@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { Observable } from "rxjs";
-import { last, map } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -82,9 +82,9 @@ export class TimeSheetComponent implements OnInit {
       tempDay.endingTime = null;
       tempDay.startingTime = null;
       tempDay.totalHours = 0;
-      if (tempDay.holiday === true) {
-        tempDay.holiday = false;
-      }
+      // if (tempDay.holiday === true) {
+      //   tempDay.holiday = false;
+      // }
       if (tempDay.vacation === true) {
         tempDay.vacation = false;
         this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft + 1;
@@ -101,9 +101,9 @@ export class TimeSheetComponent implements OnInit {
       tempDay.endingTime = null;
       tempDay.startingTime = null;
       tempDay.totalHours = 0;
-      if (tempDay.holiday === true) {
-        tempDay.holiday = false;
-      }
+      // if (tempDay.holiday === true) {
+      //   tempDay.holiday = false;
+      // }
       if (tempDay.floatingDay === true) {
         tempDay.floatingDay = false;
         this.vacationLeft.floatingDayLeft =
@@ -114,20 +114,20 @@ export class TimeSheetComponent implements OnInit {
     }
   }
 
-  holidayCheck(day) {
-    const tempDay = this.summaries.days.find(x => x.date === day);
-    tempDay.endingTime = null;
-    tempDay.startingTime = null;
-    tempDay.totalHours = 0;
-    if (tempDay.vacation) {
-      tempDay.vacation = false;
-      this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft + 1;
-    }
-    if (tempDay.floatingDay) {
-      tempDay.floatingDay = false;
-      this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft + 1;
-    }
-  }
+  // holidayCheck(day) {
+  //   const tempDay = this.summaries.days.find(x => x.date === day);
+  //   tempDay.endingTime = null;
+  //   tempDay.startingTime = null;
+  //   tempDay.totalHours = 0;
+  //   if (tempDay.vacation) {
+  //     tempDay.vacation = false;
+  //     this.vacationLeft.vacationLeft = this.vacationLeft.vacationLeft + 1;
+  //   }
+  //   if (tempDay.floatingDay) {
+  //     tempDay.floatingDay = false;
+  //     this.vacationLeft.floatingDayLeft = this.vacationLeft.floatingDayLeft + 1;
+  //   }
+  // }
 
   onFileChanged(event) {
     this.fileName = event.target.files[0].name;
@@ -178,6 +178,8 @@ export class TimeSheetComponent implements OnInit {
       this.summaries.comment = this.fileName;
       this.summaries.approvalStatus = "Approved";
       this.summaries.submissionStatus = "Complete";
+    } else {
+      this.summaries.submissionStatus = "Incomplete";
     }
     this.summaries.totalHours = this.calBilling();
     window.alert("Saved Changes!");

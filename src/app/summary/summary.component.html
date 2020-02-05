@@ -15,10 +15,25 @@
       <td>{{ summary.totalHours }}</td>
       <td>
         {{ summary.submissionStatus }}
-        <ng-container *ngIf="summary.comment === ''">
+        <ng-container
+          *ngIf="
+            summary.submissionStatus === 'Incomplete' && summary.comment === ''
+          "
+        >
           <i
             class="fas fa-info-circle"
             ngbPopover="Items due: Proof of Approved TimeSheet"
+            triggers="mouseenter:mouseleave"
+          ></i>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            summary.submissionStatus === 'Incomplete' && summary.comment !== ''
+          "
+        >
+          <i
+            class="fas fa-info-circle"
+            ngbPopover="Approval denied by Admin, please contact your HR manager"
             triggers="mouseenter:mouseleave"
           ></i>
         </ng-container>
