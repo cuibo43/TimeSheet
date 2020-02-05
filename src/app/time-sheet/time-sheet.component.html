@@ -91,7 +91,7 @@
             (change)="
               day.startingTime = timeTransferWithNull($event.target.value)
             "
-            [disabled]="summaries.approvalStatus === 'Approved'"
+            [disabled]="summaries.approvalStatus === 'Approved'||day.holiday===true"
           >
             <option [value]="'N/A'" [selected]="!day.startingTime">N/A</option>
             <ng-container *ngFor="let hour of timeHardCode">
@@ -109,7 +109,7 @@
             (change)="
               day.endingTime = timeTransferWithNull($event.target.value)
             "
-            [disabled]="summaries.approvalStatus === 'Approved'"
+            [disabled]="summaries.approvalStatus === 'Approved'||day.holiday===true"
           >
             <option [value]="'N/A'" [selected]="!day.endingTime">N/A</option>
             <ng-container *ngFor="let hour of timeHardCode">
@@ -128,7 +128,7 @@
               class="form-control"
               size="5"
               [(ngModel)]="day.totalHours"
-              [disabled]="summaries.approvalStatus === 'Approved'"
+              [disabled]="summaries.approvalStatus === 'Approved'||day.holiday===true"
             />
             <div class="input-group-append">
               <button
@@ -137,6 +137,7 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
+                [disabled]="summaries.approvalStatus === 'Approved'||day.holiday===true"
               ></button>
               <div class="dropdown-menu">
                 <a
@@ -160,7 +161,7 @@
               [disabled]="
                 summaries.approvalStatus === 'Approved' ||
                 (vacationLeft.floatingDayLeft === 0 &&
-                  day.floatingDay === false)
+                  day.floatingDay === false)||day.holiday===true
               "
             />
           </div>
@@ -170,10 +171,8 @@
             <input
               type="checkbox"
               class="form-check-input"
-              [(ngModel)]="day.holiday"
-              [disabled]="summaries.approvalStatus === 'Approved'"
-              (ngModelChange)="holidayCheck(day.date)"
-            />
+              [checked]="day.holiday"
+              [disabled]="true">
           </div>
         </td>
         <td>
@@ -184,7 +183,7 @@
               [(ngModel)]="day.vacation"
               [disabled]="
                 summaries.approvalStatus === 'Approved' ||
-                (vacationLeft.vacationLeft === 0 && day.vacation === false)
+                (vacationLeft.vacationLeft === 0 && day.vacation === false)||day.holiday===true
               "
               (ngModelChange)="vacationCheck(day.date)"
             />
