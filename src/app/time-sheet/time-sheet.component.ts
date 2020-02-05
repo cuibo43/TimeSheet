@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { Observable } from "rxjs";
-import {  map } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { WebService } from "../web.service";
 import { WeeklySummary } from "../model/weekly-summary";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -178,9 +178,8 @@ export class TimeSheetComponent implements OnInit {
       this.summaries.comment = this.fileName;
       this.summaries.approvalStatus = "Approved";
       this.summaries.submissionStatus = "Complete";
-    }
-    else{
-      this.summaries.submissionStatus="Incomplete";
+    } else {
+      this.summaries.submissionStatus = "Incomplete";
     }
     this.summaries.totalHours = this.calBilling();
     window.alert("Saved Changes!");
